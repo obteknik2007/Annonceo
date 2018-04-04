@@ -63,5 +63,17 @@ group by id_categorie');
                 }
             ?>
         </ul>
+
+        <p>Nb de clients créés</p>
+        <div id="content_graph1"></div>
+
+    <script>
+        $(function(){
+        // GRAPHE 1
+        var content_graph1 = $('#content_graph1');
+        content_graph1.css({'width':'300px','height':'200px'});
+        get_home_graph1(content_graph1);
+        });
+    </script>
 </div> 
 <?php require_once('../../php_inc/footer.php'); ?>

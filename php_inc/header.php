@@ -1,3 +1,50 @@
+<?php require_once('init.php');
+//compteurs tables admin
+//membres
+$sql1 = "SELECT COUNT(id_membre) FROM membre";
+$req1 = $pdo->prepare($sql1);
+$req1->execute();
+$res1 = $req1->fetch();
+$nbMembres = $res1['COUNT(id_membre)'];
+
+//catégories
+$sql2 = "SELECT COUNT(id_categorie) FROM categorie";
+$req2 = $pdo->prepare($sql2);
+$req2->execute();
+$res2 = $req2->fetch();
+$nbCategories = $res2['COUNT(id_categorie)'];
+
+//annonces
+$sql3 = "SELECT COUNT(id_annonce) FROM annonce";
+$req3 = $pdo->prepare($sql3);
+$req3->execute();
+$res3 = $req3->fetch();
+$nbAnnonces = $res3['COUNT(id_annonce)'];
+
+//commentaires
+$sql4 = "SELECT COUNT(id_commentaire) FROM commentaire";
+$req4 = $pdo->prepare($sql4);
+$req4->execute();
+$res4 = $req4->fetch();
+$nbCommentaires = $res4['COUNT(id_commentaire)'];
+
+//notes
+$sql5 = "SELECT COUNT(id_note) FROM note";
+$req5 = $pdo->prepare($sql5);
+$req5->execute();
+$res5 = $req5->fetch();
+$nbNotes = $res5['COUNT(id_note)'];
+
+//connexions
+$sql6 = "SELECT COUNT(id_connexion) FROM connexion";
+$req6 = $pdo->prepare($sql6);
+$req6->execute();
+$res6 = $req6->fetch();
+$nbConnexions = $res6['COUNT(id_connexion)'];
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -67,20 +114,23 @@
                         <?php if(estConnecteEtAdmin()){ ?>
                         <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-lock"></span> Administration <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" id="admin-items" aria-labelledby="dropdownMenuDivider">
                             
-                                <li><a href="<?php RACINE_SITE ?>php/back_office/gestion_membres.php"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Gestion des membres</a></li>
+                                <li><a href="/annonceo/php/back_office/gestion_membres.php"><span class="badge pull-right badge_menu_admin"> <?=$nbMembres ?> </span><span class="glyphicon glyphicon-user pull-right glyph_menu_admin" aria-hidden="true"></span> Gestion des membres</a></li>
 
-                                <li><a href="<?php RACINE_SITE ?>php/back_office/gestion_categories.php" id="nav_gestion_categories"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Gestion des catégories</a></li>
+                                <li><a href="/annonceo/php/back_office/gestion_categories.php"><span class="badge pull-right badge_menu_admin"> <?=$nbCategories ?> </span><span class="glyphicon glyphicon-folder-open pull-right glyph_menu_admin" aria-hidden="true"></span> Gestion des catégories</a></li>
 
-                                <li><a href="<?php RACINE_SITE ?>php/back_office/gestion_annonces.php" id="nav_gestion_annonces"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Gestion des annonces</a></li>
+                                <li><a href="/annonceo/php/back_office/gestion_annonces.php"><span class="badge pull-right badge_menu_admin"> <?=$nbAnnonces ?> </span><span class="glyphicon glyphicon-list-alt pull-right glyph_menu_admin" aria-hidden="true"></span> Gestion des annonces</a></li>
 
-                                <li><a href="<?php RACINE_SITE ?>php/back_office/gestion_commentaires.php" id="nav_gestion_commentaires"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Gestion des commentaires</a></li>
+                                <li><a href="/annonceo/php/back_office/gestion_commentaires.php"><span class="badge pull-right badge_menu_admin"> <?=$nbCommentaires ?> </span><span class="glyphicon glyphicon-pencil pull-right glyph_menu_admin" aria-hidden="true"></span> Gestion des commentaires</a></li>
 
-                                <li><a href="<?php RACINE_SITE ?>php/back_office/gestion_notes.php" id="nav_gestion_notes"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Gestion des notes</a></li>
+                                <li><a href="/annonceo/php/back_office/gestion_notes.php"><span class="badge pull-right badge_menu_admin"> <?=$nbNotes ?> </span><span class="glyphicon glyphicon-star pull-right glyph_menu_admin" aria-hidden="true"></span> Gestion des notes</a></li>
 
-                                <li><a href="<?php RACINE_SITE ?>php/back_office/statistiques.php" id="nav_stats"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Statistiques/Nettoyage</a></li>
-            
+                                <li><a href="/annonceo/php/back_office/histo_connexion.php"><span class="badge pull-right badge_menu_admin"> <?=$nbConnexions ?> </span><span class="glyphicon glyphicon-time pull-right glyph_menu_admin" aria-hidden="true"></span> Historique des connexions</a></li>            
+                                
+                                <li role="separator" class="divider"></li>
+
+                                <li><a href="/annonceo/php/back_office/statistiques.php"><span class="glyphicon glyphicon-stats pull-right" aria-hidden="true"></span> Statistiques/Nettoyage</a></li>
                             <?php } ?>
                         </ul>
                         </li>
@@ -91,7 +141,14 @@
     </header>
         
     <?php if(estConnecte()){
-        echo '<span id="index_login"><strong>Bonjour '.$_SESSION['membre']['prenom'].' '.$_SESSION['membre']['nom'].'</strong></span>'; 
+        //recup dh de dernière connexion du membre connecté
+        $sql = "SELECT last_login FROM membre WHERE id_membre =:id_membre";
+        $req = $pdo->prepare($sql);
+        $req->execute(array('id_membre' => $_SESSION['membre']['id_membre']));
+        $res = $req->fetch();
+
+        $dh_last_login = $res['last_login'];
+        echo '<span id="index_login">Membre connecté : <strong>'.$_SESSION['membre']['prenom'].' '.$_SESSION['membre']['nom'].'</strong> - Date heure de dernière connexion : <strong>'.format_dateheure($dh_last_login).'</strong> '.'</span><hr style="margin-bottom:15px;border-color:#FFF">'; 
         }
         ?>
     </div>

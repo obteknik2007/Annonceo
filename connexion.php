@@ -34,7 +34,12 @@ if(isset($_POST['action']) && $_POST['action'] =='connexion'){
             setcookie('user_connect',$_SESSION['membre']['id_membre'],time() + 3600 * 24 * 3); //3 jours
         }
 
-        
+        //j'historise la date de dernière connexion = celle en cours dans 'last_login'
+        $dh_login = date('Y-m-d H:i:s');
+        $sql = "UPDATE membre SET last_login=:last_login WHERE id_membre=:id_membre";
+        $req = $pdo->prepare($sql);
+        $req->execute(array('last_login' => $dh_login, 'id_membre' => $_SESSION['membre']['id_membre']));
+
         //j'informe l'utilisateur 
         if($_SESSION['membre']['statut'] == 1){
             $session->setFlash("Vous êtes maintenant connecté en tant qu'administrateur sur notre site !"); 

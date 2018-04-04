@@ -26,6 +26,13 @@
         <script src="<?=RACINE_SITE.'assets/js/jquery-jvectormap-fr-merc_department.js' ?>"></script>
 
         <script src="<?=RACINE_SITE.'assets/js/navigation.js' ?>"></script>        
-        <script src="<?=RACINE_SITE.'assets/js/scripts.js' ?>"></script>              
+        <script src="<?=RACINE_SITE.'assets/js/scripts.js' ?>"></script> 
+
+        <!-- FLOT -->
+        <script src="<?=RACINE_SITE.'assets/js/toastr.min.js' ?>"></script>
+        <script src="<?=RACINE_SITE.'assets/js/jquery.flot.min.js' ?>"></script>
+        <script src="<?=RACINE_SITE.'assets/js/jquery.flot.resize.min.js' ?>"></script>
+        <script src="<?=RACINE_SITE.'assets/js/jquery.flot.spline.js' ?>"></script>
+        <script src="<?=RACINE_SITE.'assets/js/scripts_graphiques.js' ?>"></script>              
     </body>
 </html>

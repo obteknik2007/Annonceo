@@ -1,10 +1,7 @@
-<?php
-require_once('php_inc/init.php');
-
+<?php require_once('php_inc/init.php');
 
 //header
 require_once('php_inc/header.php');
-
 //-------------------------//
 //nb d'annnonces en stock
 $req = $pdo->query("SELECT COUNT(id_annonce) FROM annonce");
@@ -17,7 +14,6 @@ $nb_annonces = $res['COUNT(id_annonce)'];
         //var_dump($_COOKIE) 
         //echo '</pre>';?>
 
-
 <div class="row">
     <div class="col-md-4"> <!-- BLOC GAUCHE -->
         <div class="box-content" style="width: 100%; height: 571px;">      
@@ -26,7 +22,7 @@ $nb_annonces = $res['COUNT(id_annonce)'];
 
             <!-- Button 'publier annonce' -->
             <button id="index_btn_publier" class="btn btn-primary center-block"><a style="color:yellow;text-decoration:none;" href="php/front/publier_annonce.php">Publier une annonce</a></button>
-            <!--<button id="index_btn_publier" class="btn btn-primary btn-md center-block">Publier votre annonce</button>-->
+
             <div class="clearfix"></div>
 
             <!-- encart publicitaire http://via.placeholder.com/250x350?text=encart_publicitaire -->
