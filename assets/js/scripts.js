@@ -52,8 +52,7 @@ $(function(){
 });
 $('#retour_index_publier').on('click',function(e){
   e.preventDefault();
-  document.location.href = "http://localhost/annonceo/index.php";
-
+  document.location.href = "index.php";
 
 }); 
 
@@ -77,10 +76,12 @@ $('#connexion').on('click',function(e){
       } else {
         setTimeout(function () {
           toastr.options = {closeButton: true,progressBar: true,showMethod: 'fadeIn',timeOut: 2000};
-          toastr.success('Vous êtes connectés.');
+          toastr.success('Vous êtes connecté.');
+
+          document.location.href="index.php";
       }, 1300);
 
-      document.location.href="index.php";
+      
       }
   },'html');
 }); //{} connexion
@@ -89,9 +90,15 @@ $('#connexion').on('click',function(e){
 $('#deconnexion').on('click',function(e){
   e.preventDefault();
 
-  $.post('http://localhost/annonceo/connexion.php','action=deconnexion',function(data){
+  $.post('connexion.php','action=deconnexion',function(data){
     if(data == 'ok'){
-      document.location.href="http://localhost/annonceo/index.php";
+
+      setTimeout(function () {
+        toastr.options = {closeButton: true,progressBar: true,showMethod: 'fadeIn',timeOut: 2000};
+        toastr.success('Vous êtes maintenant déconnecté.');
+    }, 1300);
+      document.location.href="index.php";
+      //window.location = window.location;
     } 
 },'html');
 }); //{} déconnexion

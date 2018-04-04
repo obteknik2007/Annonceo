@@ -55,7 +55,6 @@
                             <?php
                                 if(!estConnecte()){
                                     echo '<li><a href="#ModalFormInscription" data-toggle="modal">S\'inscrire</a></li>';
-                                    //echo '<li><a href="inscription.php" data-toggle="modal">S\'inscrire</a></li>';
                                     
                                     echo '<li><a href="#ModalFormConnexion" data-toggle="modal">Se connecter</a></li>';
                                 } else {
@@ -65,24 +64,45 @@
                             ?>
                         </ul>
                         </li>
+                        <?php if(estConnecteEtAdmin()){ ?>
+                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-lock"></span> Administration <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            
+                                <li><a href="<?php RACINE_SITE ?>php/back_office/gestion_membres.php"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Gestion des membres</a></li>
+
+                                <li><a href="<?php RACINE_SITE ?>php/back_office/gestion_categories.php" id="nav_gestion_categories"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Gestion des catégories</a></li>
+
+                                <li><a href="<?php RACINE_SITE ?>php/back_office/gestion_annonces.php" id="nav_gestion_annonces"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Gestion des annonces</a></li>
+
+                                <li><a href="<?php RACINE_SITE ?>php/back_office/gestion_commentaires.php" id="nav_gestion_commentaires"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Gestion des commentaires</a></li>
+
+                                <li><a href="<?php RACINE_SITE ?>php/back_office/gestion_notes.php" id="nav_gestion_notes"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Gestion des notes</a></li>
+
+                                <li><a href="<?php RACINE_SITE ?>php/back_office/statistiques.php" id="nav_stats"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Statistiques/Nettoyage</a></li>
+            
+                            <?php } ?>
+                        </ul>
+                        </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container -->
         </nav>
     </header>
-    <?php if(estConnecteEtAdmin()){
-    echo '<div class="row content-admin" style="background:#a1aeff;color:#FFF">
-            <ul id="menu_admin">
-                <li><a href="'.RACINE_SITE.'php/back_office/gestion_membres.php"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Gestion des membres</a></li>
-                <li><a href="'.RACINE_SITE.'php/back_office/gestion_categories.php" id="nav_gestion_categories"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Gestion des catégories</a></li>
-                <li><a href="'.RACINE_SITE.'php/back_office/gestion_annonces.php" id="nav_gestion_annonces"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Gestion des annonces</a></li>
-                <li><a href="'.RACINE_SITE.'php/back_office/gestion_commentaires.php" id="nav_gestion_commentaires"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Gestion des commentaires</a></li>
-                <li><a href="'.RACINE_SITE.'php/back_office/gestion_notes.php" id="nav_gestion_notes"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Gestion des notes</a></li>
-                <li><a href="'.RACINE_SITE.'php/back_office/statistiques.php" id="nav_stats"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Statistiques/Nettoyage</a></li>
-            </ul>
-    
-    </div>';
+        
+    <?php if(estConnecte()){
+        echo '<span id="index_login"><strong>Bonjour '.$_SESSION['membre']['prenom'].' '.$_SESSION['membre']['nom'].'</strong></span>'; 
+        }
+        ?>
+    </div>
+        <!-- fin debug $_cookie -->
+        <?php if(isset($_SESSION['flash'])){
+        echo '<div class="alert alert-success">';
+        $session->flash();
+        echo '</div>';
     } ?>
+
+
     <div id="contenu_ppal" class="container">    
 
     <!-- MODAL INSCRIPTION -->
@@ -188,7 +208,7 @@
                     <div class="form-group">
                         <label for="pseudo_connexion" class="col-sm-4 control-label">Votre pseudo</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="pseudo_connexion" name="pseudo_connexion" placeholder="Votre pseudo...">
+                            <input type="text" class="form-control" id="pseudo_connexion" name="pseudo_connexion" placeholder="Votre pseudo..." autofocus>
                         </div>
                     </div>
 
@@ -204,7 +224,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="checkbox">
-                                <label><input type="checkbox"> Se souvenir de moi</label>
+                                <label><input type="checkbox" name="remember" id="remember"> Se souvenir de moi</label>
                             </div>
                         </div>
                     </div>

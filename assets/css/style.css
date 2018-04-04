@@ -120,7 +120,7 @@ hr{
 
 /*************************************************************************************/
 /*** MENU ADMIN ***/
-#content-admin{
+.content-admin{
     margin-bottom: 20px;
 }
 ul#menu_admin {

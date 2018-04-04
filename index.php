@@ -1,6 +1,7 @@
 <?php
 require_once('php_inc/init.php');
 
+
 //header
 require_once('php_inc/header.php');
 
@@ -10,12 +11,12 @@ $req = $pdo->query("SELECT COUNT(id_annonce) FROM annonce");
 $res = $req->fetch(PDO::FETCH_ASSOC);
 $nb_annonces = $res['COUNT(id_annonce)'];
 ?>
+<?php 
+        //echo '<pre>';
+        //var_dump($_SESSION);
+        //var_dump($_COOKIE) 
+        //echo '</pre>';?>
 
-<div class="row" id="section_login">
-    <div class="col-md-12 text-right">
-        <?php if(estConnecte()){echo '<span id="index_login"><strong>Bonjour '.$_SESSION['membre']['prenom'].' '.$_SESSION['membre']['nom'].'</strong></span>'; }?>
-    </div>
-</div>
 
 <div class="row">
     <div class="col-md-4"> <!-- BLOC GAUCHE -->

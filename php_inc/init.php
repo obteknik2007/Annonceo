@@ -1,5 +1,8 @@
 <?php
-session_start();
+//session_start();
+require_once 'session.class.php';
+$session = new Session();
+
 
 //Connextion à la bdd 'annonceo'
 $pdo = new PDO('mysql:host=localhost;dbname=annonceo','root','',array(
