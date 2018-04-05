@@ -59,10 +59,21 @@ $dept = substr($_GET['dept'],-2,2);
     $req_filtre_membres->execute(); 
 
     ?>
-    <h2 class="page-header">Home</h2>
+    <div class="row">
+        <div class="col-md-4"><h2>Home</h2></div>
+        <div class="col-md-8">
+            <span style="font-size:15px;padding-bottom:0" class="pull-right">Filtres : Département : <?=$_GET['dept'] ?></span>
+        </div>
+    </div>
+    <hr style="border-color:#FFF;margin-bottom:15px">
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <small>Nombre de résultats :<?= $annonces_filtrees->rowCount() ?></small>
+        </div>
+    </div>    
     <div class="row">
         <div class="col-md-4">
-            
+
             <form method="post" action="#">
                 <!-- Filtre CATEGORIE -->
                 <div class="form-group home_bloc_filtre">
@@ -112,10 +123,6 @@ $dept = substr($_GET['dept'],-2,2);
         </div>
             <div class="col-md-8" id="bloc_liste_annonces">
                 <!-- Département filtré par défaut-->
-        
-                <p><strong>Annonces publiées sur le département : <?=$_GET['dept'] ?></strong></p>
-                <small>Nombre de résultats :<?= $annonces_filtrees->rowCount() ?></small>
-                <hr>    
 
                 <!-- Tri par prix ASC/DESC -->
                 <form id="form_tri_prix" method ="post" action="">
@@ -131,35 +138,38 @@ $dept = substr($_GET['dept'],-2,2);
                 {
                 
                echo '<div class="row">';
-                    echo'<div class="col-md-4">';
+                    echo'<div class="col-md-3">';
+                        echo '<div class="center-block">';
                             $path_image = '';
                             if($ligne['url'] <> ''){
                                 $path_image = $ligne['url'];
                             } else {
                                 $path_image = '../../assets/img/img_substitut2.png';
                             }
-                            echo '<a href="fiche_annonce.php?id_annonce='.$ligne['id_annonce'].'"> <img class="img-thumbnail img-responsive affiche" src="'.$path_image.'" alt="'.$ligne['titre'].'"></a>';
+                            echo '<a href="fiche_annonce.php?id_annonce='.$ligne['id_annonce'].'"> <img class="img-thumbnail img-responsive affiche center-block" src="'.$path_image.'" alt="'.$ligne['titre'].'"></a>';
                             /*echo 'id annonce = '.$ligne['id_annonce'].' - '.$ligne['cp'].'<br>';
                             echo 'id categorie = '.$ligne['categorie_id'].'<br>';
                             echo 'id membre = '.$ligne['membre_id'].'<br>';
                             echo 'Date d\'enregistrement annonce = '.format_dateheure($ligne['date_enregistrement']);*/
-                    echo'</div>';/* fin col-md-4*/
+                            echo'</div>';
+                            echo'</div>';/* fin col-md-4*/
                     
-                    echo '<div class="col-md-8 fiche_annonce">
+                    echo '<div class="col-md-9 fiche_annonce">
                             <div>
                                 <h3 style="background:#eee" class="titre_fiche"><a href="fiche_annonce.php?id_annonce='.$ligne['id_annonce'].'">'.$ligne['titre'].'</a></h3>
                                 <small style="color:#000;font-weight:bold">'.$ligne['cp'].' - '.$ligne['ville'].'</small>
                             </div>';
                     echo $ligne['description_longue'].'<br>';
-                    echo '<span>'.$ligne['pseudo'].'</a></span>';
-                    echo '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
-                    echo '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
-                    echo '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
-                    echo '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
-                    echo '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
-                    echo '<span class="prix_annonce">'.format_decimal($ligne['prix'],2).' €</span><hr>';
-                    echo'</div>';/* fin du col-md-8 */
-                    
+                        echo '<div class="col-md-12" style="background: lightblue">
+                                <span>'.$ligne['pseudo'].'</a></span>
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                <span class="prix_annonce">'.format_decimal($ligne['prix'],2).' €</span>
+                            </div>
+                            </div>';/* fin du col-md-12 */
                echo '</div>';/* fin de la row */
                
                 }

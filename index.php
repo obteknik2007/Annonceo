@@ -19,14 +19,17 @@ $nb_annonces = $res['COUNT(id_annonce)'];
         <div class="box-content" style="width: 100%; height: 571px;">      
             <!-- Texte -->
             <p><span id="index_nb_annonces"><?=$nb_annonces ?> annonces</span> disponibles sur <span id="index_marque">Annonceo</span> !</p>
+            
+            <hr>
+            <!--<div class="clearfix"></div>-->
 
-            <!-- Button 'publier annonce' -->
-            <button id="index_btn_publier" class="btn btn-primary center-block"><a style="color:yellow;text-decoration:none;" href="php/front/publier_annonce.php">Publier une annonce</a></button>
-
-            <div class="clearfix"></div>
-
-            <!-- encart publicitaire http://via.placeholder.com/250x350?text=encart_publicitaire -->
-            <img id="index_encart_pub" src="assets/img/250x350_encart_publicitaire.png" alt="Encart publicitaire" class="img-responsive">
+            <!-- encart publicitaire http://via.placeholder.com/300x100?text=encart_publicitaire1 -->
+            <div class="center-block">
+                <div class="center-block" style="height:130px;width:300px;background:yellow">Slider publicitaire</div>
+                <img id="index_encart_pub1" src="assets/img/300x100_Encart_publicitaire 1.png" alt="Encart publicitaire1" class="img-responsive center-block">
+                <img id="index_encart_pub2" src="assets/img/300x100_Encart_publicitaire 2.png" alt="Encart publicitaire1" class="img-responsive center-block">
+                <img id="index_encart_pub3" src="assets/img/300x100_Encart_publicitaire 3.png" alt="Encart publicitaire1" class="img-responsive center-block">
+            </div>
 
         </div>
     </div>

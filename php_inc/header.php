@@ -148,9 +148,11 @@ $nbConnexions = $res6['COUNT(id_connexion)'];
         $res = $req->fetch();
 
         $dh_last_login = $res['last_login'];
-        echo '<span id="index_login">Membre connecté : <strong>'.$_SESSION['membre']['prenom'].' '.$_SESSION['membre']['nom'].'</strong> - Date heure de dernière connexion : <strong>'.format_dateheure($dh_last_login).'</strong> '.'</span><hr style="margin-bottom:15px;border-color:#FFF">'; 
-        }
-        ?>
+        echo '<span id="index_login">Membre connecté : <strong>'.$_SESSION['membre']['prenom'].' '.$_SESSION['membre']['nom'].'</strong> - Date heure de dernière connexion : <strong>'.format_dateheure($dh_last_login).'</strong> '; 
+                    
+        echo'<p class="pull-right" style="color: dodgerblue;border-bottom:1px solid #FFF"><span id="index_nb_annonces_ggl">n annonces</span> disponibles dans un rayon de 30 kms de chez vous</span> !</p>';
+        echo '</span><hr style="margin-bottom:15px;border-color:#FFF">';
+        } ?>
     </div>
         <!-- fin debug $_cookie -->
         <?php if(isset($_SESSION['flash'])){

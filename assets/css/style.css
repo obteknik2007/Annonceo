@@ -107,6 +107,9 @@ hr{
     font-size: 15px;
     font-weight: bold;
 }
+#index_nb_annonces_ggl{
+    font-weight: bold;
+}
 #index_marque{
     font-size: 15px;
     font-weight: bold;
@@ -167,6 +170,7 @@ ul#menu_admin li a:hover{
 }
 h3.titre_fiche{
     text-align: left !important;
+    margin-top: 0;
 }
 .fiche_annonce{
     margin-top:10px;
