@@ -41,8 +41,6 @@ $req6 = $pdo->prepare($sql6);
 $req6->execute();
 $res6 = $req6->fetch();
 $nbConnexions = $res6['COUNT(id_connexion)'];
-
-
 ?>
 
 <!DOCTYPE html>
@@ -52,20 +50,19 @@ $nbConnexions = $res6['COUNT(id_connexion)'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Annonceo | Home</title>
-    <!-- css -->
+    <!-- css libs -->
     <link rel="stylesheet" href="<?=RACINE_SITE ?>/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?=RACINE_SITE ?>/assets/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="<?=RACINE_SITE ?>/assets/css/animate.min.css">
     <link rel="stylesheet" href="<?=RACINE_SITE ?>/assets/css/toastr.min.css">
     <link rel="stylesheet" href="<?=RACINE_SITE ?>/assets/css/pace_theme_1.css">
-
     <link rel="stylesheet" href="<?=RACINE_SITE ?>/assets/css/jquery-jvectormap-2.0.3.css">
-
+    <!-- css perso -->
     <link rel="stylesheet" href="<?=RACINE_SITE ?>/assets/css/style.css">
 </head>
 <body>
     <header>
-        <nav id="barre" class="navbar navbar-inverse navbar-fixed-top">
+        <nav id="barre" class="navbar navbar-inverse">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -82,14 +79,13 @@ $nbConnexions = $res6['COUNT(id_connexion)'];
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                     <ul class="nav navbar-nav">
-                        <li class="active" id="nav_qui_sommesnous"><a href="http://localhost/annonceo/php/front/qui_sommesnous.php">Qui sommes-nous <span class="sr-only">(current)</span></a></li>
+                        <li class="active" id="nav_qui_sommesnous"><a href="php/front/qui_sommesnous.php">Qui sommes-nous <span class="sr-only">(current)</span></a></li>
                         <!--<li><a href="#" id="nav_contact">Contact</a></li>-->
                         <li>
                             <form id="index_form_search" class="navbar-form">
-                            <div class="form-group">
-                                <input type="text" id="index_search" name="index_search" class="form-control" placeholder="Recherche...">
-                            </div>
-                            <!--<button type="submit" class="btn btn-default">Submit</button>-->
+                                <div class="form-group">
+                                    <input type="text" id="index_search" name="index_search" class="form-control" placeholder="Recherche...">
+                                </div>
                             </form>
                         </li>
                     </ul>
@@ -139,31 +135,34 @@ $nbConnexions = $res6['COUNT(id_connexion)'];
             </div><!-- /.container -->
         </nav>
     </header>
-        
-    <?php if(estConnecte()){
-        //recup dh de dernière connexion du membre connecté
-        $sql = "SELECT last_login FROM membre WHERE id_membre =:id_membre";
-        $req = $pdo->prepare($sql);
-        $req->execute(array('id_membre' => $_SESSION['membre']['id_membre']));
-        $res = $req->fetch();
+    
+    <div class="container">
+        <?php if(estConnecte()){
+            //recup dh de dernière connexion du membre connecté
+            $sql = "SELECT last_login FROM membre WHERE id_membre =:id_membre";
+            $req = $pdo->prepare($sql);
+            $req->execute(array('id_membre' => $_SESSION['membre']['id_membre']));
+            $res = $req->fetch();
 
-        $dh_last_login = $res['last_login'];
-        echo '<span id="index_login">Membre connecté : <strong>'.$_SESSION['membre']['prenom'].' '.$_SESSION['membre']['nom'].'</strong> - Date heure de dernière connexion : <strong>'.format_dateheure($dh_last_login).'</strong> '; 
-                    
-        echo'<p class="pull-right" style="color: dodgerblue;border-bottom:1px solid #FFF"><span id="index_nb_annonces_ggl">n annonces</span> disponibles dans un rayon de 30 kms de chez vous</span> !</p>';
-        echo '</span><hr style="margin-bottom:15px;border-color:#FFF">';
+            $dh_last_login = $res['last_login'];
+            echo '<span id="index_login">Membre connecté : <strong>'.$_SESSION['membre']['prenom'].' '.$_SESSION['membre']['nom'].'</strong> - Date heure de dernière connexion : <strong>'.format_dateheure($dh_last_login).'</strong> '; 
+                        
+            echo'<p class="pull-right" style="color: dodgerblue;border-bottom:1px solid #000"><span id="index_nb_annonces_ggl">n annonces</span> disponibles dans un rayon de 30 kms de chez vous</span> !</p>';
+            echo '</span><hr style="margin-bottom:15px">';
         } ?>
-    </div>
-        <!-- fin debug $_cookie -->
-        <?php if(isset($_SESSION['flash'])){
-        echo '<div class="alert alert-success">';
-        $session->flash();
-        echo '</div>';
-    } ?>
 
+        <!-- Messages Flash -->
+            <?php if(isset($_SESSION['flash'])){
+            echo '<div class="alert alert-success">';
+            $session->flash();
+            echo '</div>';
+        } ?>
+    </div> <!-- fin container -->
+    
+    <!-- CONTENU DU SITE -->
+    <div id="contenu_ppal" class="container"> 
 
-    <div id="contenu_ppal" class="container">    
-
+<!--  ************************************************************************************************** -->
     <!-- MODAL INSCRIPTION -->
 <div class="modal fade" id="ModalFormInscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -248,7 +247,6 @@ $nbConnexions = $res6['COUNT(id_connexion)'];
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
 
 <!-- MODAL CONNEXION -->
 <div class="modal fade" id="ModalFormConnexion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

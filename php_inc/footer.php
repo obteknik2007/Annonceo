@@ -3,16 +3,15 @@
         <div class="container-fluid">
             <footer>
                 <div class="row">
-                    <div class="col-md-12 text-center">
-                        <p>&copy; Copyright 2018 - Annonceo - Tous droits réservés -- 
-                            <span><a href="http://localhost/annonceo/php/front/mentions_legales.php" id="footer_mentions_legales">Mentions légales</a></span> | 
-                            <span><a href="http://localhost/annonceo/php/front/cgv.php" id="footer_cgv">Condtions générales de vente</a></span>
+                    <div class="col-md-12">
+                        <p>&copy; Copyright <?=date('Y'); ?> - Annonceo - Tous droits réservés -- 
+                            <span><a href="php/front/mentions_legales.php" id="footer_mentions_legales">Mentions légales</a></span> | 
+                            <span><a href="php/front/cgv.php" id="footer_cgv">Condtions générales de vente</a></span>
                         </p>
-                        
                     </div>
                 </div>
             </footer>     
-        </div>
+        </div> <!-- FIN CONTENU DU SITE -->
 
         <!-- js -->
         <script src="<?=RACINE_SITE.'assets/js/jquery-3.3.1.min.js' ?>"></script>        

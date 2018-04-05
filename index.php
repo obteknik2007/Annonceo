@@ -9,44 +9,72 @@ $res = $req->fetch(PDO::FETCH_ASSOC);
 $nb_annonces = $res['COUNT(id_annonce)'];
 ?>
 <?php 
-        //echo '<pre>';
-        //var_dump($_SESSION);
-        //var_dump($_COOKIE) 
-        //echo '</pre>';?>
+    /*
+    echo '<pre>';
+    var_dump($_SESSION);
+    var_dump($_COOKIE) 
+    echo '</pre>';*/
+?>
 
 <div class="row">
     <div class="col-md-4"> <!-- BLOC GAUCHE -->
-        <div class="box-content" style="width: 100%; height: 571px;">      
+        <div class="box-content" style="min-height: 602px;">      
             <!-- Texte -->
             <p><span id="index_nb_annonces"><?=$nb_annonces ?> annonces</span> disponibles sur <span id="index_marque">Annonceo</span> !</p>
             
             <hr>
-            <!--<div class="clearfix"></div>-->
 
-            <!-- encart publicitaire http://via.placeholder.com/300x100?text=encart_publicitaire1 -->
-            <div class="center-block">
-                <div class="center-block" style="height:130px;width:300px;background:yellow">Slider publicitaire</div>
-                <img id="index_encart_pub1" src="assets/img/300x100_Encart_publicitaire 1.png" alt="Encart publicitaire1" class="img-responsive center-block">
-                <img id="index_encart_pub2" src="assets/img/300x100_Encart_publicitaire 2.png" alt="Encart publicitaire1" class="img-responsive center-block">
-                <img id="index_encart_pub3" src="assets/img/300x100_Encart_publicitaire 3.png" alt="Encart publicitaire1" class="img-responsive center-block">
-            </div>
+            <!-- slider publicitaire -->
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>
 
-        </div>
-    </div>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="http://placehold.it/280x125" alt="Encart 1">
+                            <div class="carousel-caption"></div>
+                        </div>
+                        <div class="item">
+                            <img src="http://placehold.it/280x125" alt="Encart 2">
+                            <div class="carousel-caption"></div>
+                        </div>
+                        <div class="item">
+                            <img src="http://placehold.it/280x125" alt="Encart 3">
+                            <div class="carousel-caption"></div>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div> <!-- fin carousel -->
+
+            <!-- encarts fixes -->
+            <img id="index_encart_pub1" src="assets/img/300x100_Encart_publicitaire 1.png" alt="Encart publicitaire1" class="img-responsive">
+            <img id="index_encart_pub2" src="assets/img/300x100_Encart_publicitaire 2.png" alt="Encart publicitaire1" class="img-responsive">
+            <img id="index_encart_pub3" src="assets/img/300x100_Encart_publicitaire 3.png" alt="Encart publicitaire1" class="img-responsive">
+        </div> <!-- fin col-md-4 -->
+    </div> <!-- fin box-content -->
+
     <div class="col-md-8"> <!-- BLOC DROIT -->
         <div class="box-content"> 
-            <p><span id="index_titre_carte">Choisissez votre département...</span></p>
+            <p>
+                <span id="index_titre_carte">Choisissez votre département...</span>
+                <button id="index_btn_publier" class="btn btn-primary pull-right btn-sm"><a style="color:yellow;text-decoration:none;" href="php/front/publier_annonce.php">Publier une annonce</a></button>
+            </p>
             <hr><br>
-            <div id="map" style="width: 100%; height: 500px;margin: 0 auto;"></div>
+            <div id="map" style="height: 530px;margin: 0 auto;"></div>
         </div>
-    </div>
+    </div> <!-- fin col-md-8 -->
 </div> <!-- fin row -->
 
-
-
-
-
-<?php 
-//footer
-require_once('php_inc/footer.php');
-?>
+<?php require_once('php_inc/footer.php'); ?>
