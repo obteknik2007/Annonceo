@@ -36,15 +36,15 @@ $nb_annonces = $res['COUNT(id_annonce)'];
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active">
-                            <img src="http://placehold.it/280x125" alt="Encart 1">
+                            <img src="assets/img/280x125_slider_pub1.png" alt="Encart 1">
                             <div class="carousel-caption"></div>
                         </div>
                         <div class="item">
-                            <img src="http://placehold.it/280x125" alt="Encart 2">
+                            <img src="assets/img/280x125_slider_pub2.png" alt="Encart 2">
                             <div class="carousel-caption"></div>
                         </div>
                         <div class="item">
-                            <img src="http://placehold.it/280x125" alt="Encart 3">
+                            <img src="assets/img/280x125_slider_pub3.png" alt="Encart 3">
                             <div class="carousel-caption"></div>
                         </div>
                     </div>

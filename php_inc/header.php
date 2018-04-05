@@ -80,11 +80,10 @@ $nbConnexions = $res6['COUNT(id_connexion)'];
 
                     <ul class="nav navbar-nav">
                         <li class="active" id="nav_qui_sommesnous"><a href="php/front/qui_sommesnous.php">Qui sommes-nous <span class="sr-only">(current)</span></a></li>
-                        <!--<li><a href="#" id="nav_contact">Contact</a></li>-->
                         <li>
                             <form id="index_form_search" class="navbar-form">
                                 <div class="form-group">
-                                    <input type="text" id="index_search" name="index_search" class="form-control" placeholder="Recherche...">
+                                    <input type="text" id="index_search" name="index_search" class="form-control input-sm" placeholder="Recherche...">
                                 </div>
                             </form>
                         </li>
@@ -94,15 +93,15 @@ $nbConnexions = $res6['COUNT(id_connexion)'];
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Espace Membre <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" id="espace-membres">
                             <?php
                                 if(!estConnecte()){
-                                    echo '<li><a href="#ModalFormInscription" data-toggle="modal">S\'inscrire</a></li>';
+                                    echo '<li><a href="#ModalFormInscription" data-toggle="modal"><span class="glyphicon glyphicon-edit pull-right glyph_menu_admin" aria-hidden="true"></span>S\'inscrire</a></li>';
                                     
-                                    echo '<li><a href="#ModalFormConnexion" data-toggle="modal">Se connecter</a></li>';
+                                    echo '<li><a href="#ModalFormConnexion" data-toggle="modal"><span class="glyphicon glyphicon-log-in pull-right glyph_menu_admin" aria-hidden="true"></span>Se connecter</a></li>';
                                 } else {
-                                    echo '<li><a href="#" id="nav_profil">Profil</a></li>';
-                                    echo '<li><a href="#" id="deconnexion">Se déconnecter</a></li>';
+                                    echo '<li><a href="#" id="nav_profil"><span class="glyphicon glyphicon-user pull-right glyph_menu_admin" aria-hidden="true"></span>Profil</a></li>';
+                                    echo '<li><a href="#" id="deconnexion"><span class="glyphicon glyphicon-log-out pull-right glyph_menu_admin" aria-hidden="true"></span>Se déconnecter</a></li>';
                                 }
                             ?>
                         </ul>

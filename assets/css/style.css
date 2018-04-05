@@ -50,7 +50,7 @@ hr{
     margin: 10px 0 20px;
 }
 .box-content{
-    background: #51fd16;
+    background: #a8c7f5;
     -webkit-box-shadow: 1px 1px 15px 0px rgba(115,108,115,1);
     -moz-box-shadow: 1px 1px 15px 0px rgba(115,108,115,1);
     box-shadow: 1px 1px 15px 0px rgba(115,108,115,1);
@@ -69,12 +69,11 @@ hr{
     vertical-align: top;
 }
 .navbar-inverse{
-    background: #1C3144;
+    background: #7abaf5;
 }
 .navbar-nav>li>a{
-    font-size: 13px;
+    font-size: 13px;  
 }
-
 .navbar .navbar-brand span{
     font-size: 20px;
     background: #FFF;
@@ -82,10 +81,34 @@ hr{
     border-radius: 5px;
     color: #000;
 }
+.navbar-inverse .navbar-nav>li>a{
+ color:#FFF;   
+}
+.navbar-inverse .navbar-nav>li>a:hover{
+    color:#dbf549;
+    background: dodgerblue;   
+}
+
+.navbar-inverse .navbar-nav>.active>a{
+    background: dodgerblue;   
+   }
+.navbar-inverse .navbar-nav .glyphicon:not(.glyph_menu_admin){
+    color:#fff;
+}
+
 /* form recherche */
 #index_search{
     width: 450px;
 }
+/*************************************************************************************/
+/*** FOOTER ***/
+footer {
+    width: 100%;
+    background-color: #7abaf5;
+    color: #000;
+    text-align: center;
+ }
+ /*************************************************************************************/
 /* modal connexion/inscription */
 /*.modal-header{
     padding: 15px;
@@ -172,11 +195,14 @@ hr{
 .glyph_menu_admin{
     margin-right: 10px;
 }
-.dropdown-menu>li>a {
+#admin-items.dropdown-menu>li>a {
     text-align: left;
     color:#000;
     padding: 1px 10px;
     width: 250px;
+}
+#espace-membres.dropdown-menu>li>a {
+    width: 200px;
 }
 .content-admin{
     margin-bottom: 20px;
@@ -314,7 +340,6 @@ th.th_actions{
     width:12%;
 }
 .glyphicon.modif{
-    color:#647ab7;
     padding: 10%;
 }
 .glyphicon{
@@ -399,11 +424,3 @@ ul.publie{
 h2.stat{
     margin-top:15px;
 }
-/*************************************************************************************/
-/*** FOOTER ***/
-footer {
-    width: 100%;
-    background-color: #1C3144;
-    color: white;
-    text-align: center;
- }
