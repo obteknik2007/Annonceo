@@ -69,7 +69,7 @@ $nb_annonces = $res['COUNT(id_annonce)'];
         <div class="box-content"> 
             <p>
                 <span id="index_titre_carte">Choisissez votre département...</span>
-                <button id="index_btn_publier" class="btn btn-primary pull-right btn-sm"><a style="color:yellow;text-decoration:none;" href="php/front/publier_annonce.php">Publier une annonce</a></button>
+                <button id="index_btn_publier" class="btn btn-primary pull-right btn-sm"><a style="color:yellow;text-decoration:none;" href="php/front/publier_annonce.php"><span style="color:yellow" class="glyphicon glyphicon-edit" aria-hidden="true"></span> Publier une annonce</a></button>
             </p>
             <hr><br>
             <div id="map" style="height: 530px;margin: 0 auto;"></div>

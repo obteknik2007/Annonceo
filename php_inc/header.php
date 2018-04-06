@@ -50,6 +50,24 @@ $nbConnexions = $res6['COUNT(id_connexion)'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Annonceo | Home</title>
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="assets/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/img/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/img/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
     <!-- css libs -->
     <link rel="stylesheet" href="<?=RACINE_SITE ?>/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?=RACINE_SITE ?>/assets/css/bootstrap-theme.min.css">
@@ -72,14 +90,16 @@ $nbConnexions = $res6['COUNT(id_connexion)'];
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="<?=RACINE_SITE ?>" class="navbar-brand"><span>Annonceo</span></a>
+                    <a href="index.php" class="navbar-brand"><span class="menu_txt">Annonceo</span></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                     <ul class="nav navbar-nav">
-                        <li class="active" id="nav_qui_sommesnous"><a href="php/front/qui_sommesnous.php">Qui sommes-nous <span class="sr-only">(current)</span></a></li>
+                    <li><a href="index.php"><span style="color:#FFF;" class="glyphicon glyphicon-home menu_txt" aria-hidden="true"></span><span class="sr-only">(current)</span></a></li>
+                        <li>
+                    <li class="active menu_txt" id="nav_qui_sommesnous"><a href="php/front/qui_sommesnous.php" >Qui sommes-nous</a></li>
                         <li>
                             <form id="index_form_search" class="navbar-form">
                                 <div class="form-group">
@@ -92,40 +112,43 @@ $nbConnexions = $res6['COUNT(id_connexion)'];
                     <!-- NAVBAR RIGHT -->
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Espace Membre <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" style="text-shadow:1px 2px 3px rgba(0,0,0, 0.5);" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Espace membre <span class="caret"></span></a>
                         <ul class="dropdown-menu" id="espace-membres">
                             <?php
                                 if(!estConnecte()){
-                                    echo '<li><a href="#ModalFormInscription" data-toggle="modal"><span class="glyphicon glyphicon-edit pull-right glyph_menu_admin" aria-hidden="true"></span>S\'inscrire</a></li>';
-                                    
-                                    echo '<li><a href="#ModalFormConnexion" data-toggle="modal"><span class="glyphicon glyphicon-log-in pull-right glyph_menu_admin" aria-hidden="true"></span>Se connecter</a></li>';
+                                    echo '<li class="menu_txt"><a href="#ModalFormInscription" data-toggle="modal"><span class="glyphicon glyphicon-edit pull-right glyph_menu_admin" aria-hidden="true"></span>S\'inscrire</a></li>';
+
+                                    echo '<li role="separator" class="divider"></li>';
+
+                                    echo '<li class="menu_txt"><a href="#ModalFormConnexion" data-toggle="modal"><span class="glyphicon glyphicon-log-in pull-right glyph_menu_admin" aria-hidden="true"></span>Se connecter</a></li>';
                                 } else {
-                                    echo '<li><a href="#" id="nav_profil"><span class="glyphicon glyphicon-user pull-right glyph_menu_admin" aria-hidden="true"></span>Profil</a></li>';
-                                    echo '<li><a href="#" id="deconnexion"><span class="glyphicon glyphicon-log-out pull-right glyph_menu_admin" aria-hidden="true"></span>Se déconnecter</a></li>';
+                                    echo '<li class="menu_txt"><a href="/annonceo/profil.php"><span class="glyphicon glyphicon-user pull-right glyph_menu_admin" aria-hidden="true"></span>Profil</a></li>';
+                                    echo '<li role="separator" class="divider"></li>';
+                                    echo '<li class="menu_txt"><a href="#" id="deconnexion"><span class="glyphicon glyphicon-log-out pull-right glyph_menu_admin" aria-hidden="true"></span>Se déconnecter</a></li>';
                                 }
                             ?>
                         </ul>
                         </li>
                         <?php if(estConnecteEtAdmin()){ ?>
                         <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-lock"></span> Administration <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" style="text-shadow:1px 2px 3px rgba(0,0,0, 0.5);" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-lock"></span> Administration <span class="caret"></span></a>
                         <ul class="dropdown-menu" id="admin-items" aria-labelledby="dropdownMenuDivider">
                             
-                                <li><a href="/annonceo/php/back_office/gestion_membres.php"><span class="badge pull-right badge_menu_admin"> <?=$nbMembres ?> </span><span class="glyphicon glyphicon-user pull-right glyph_menu_admin" aria-hidden="true"></span> Gestion des membres</a></li>
+                                <li class="menu_txt"><a href="/annonceo/php/back_office/gestion_membres.php"><span class="badge pull-right badge_menu_admin"> <?=$nbMembres ?> </span><span class="glyphicon glyphicon-user pull-right glyph_menu_admin" aria-hidden="true"></span> Gestion des membres</a></li>
 
-                                <li><a href="/annonceo/php/back_office/gestion_categories.php"><span class="badge pull-right badge_menu_admin"> <?=$nbCategories ?> </span><span class="glyphicon glyphicon-folder-open pull-right glyph_menu_admin" aria-hidden="true"></span> Gestion des catégories</a></li>
+                                <li class="menu_txt"><a href="/annonceo/php/back_office/gestion_categories.php"><span class="badge pull-right badge_menu_admin"> <?=$nbCategories ?> </span><span class="glyphicon glyphicon-folder-open pull-right glyph_menu_admin" aria-hidden="true"></span> Gestion des catégories</a></li>
 
-                                <li><a href="/annonceo/php/back_office/gestion_annonces.php"><span class="badge pull-right badge_menu_admin"> <?=$nbAnnonces ?> </span><span class="glyphicon glyphicon-list-alt pull-right glyph_menu_admin" aria-hidden="true"></span> Gestion des annonces</a></li>
+                                <li class="menu_txt"><a href="/annonceo/php/back_office/gestion_annonces.php"><span class="badge pull-right badge_menu_admin"> <?=$nbAnnonces ?> </span><span class="glyphicon glyphicon-list-alt pull-right glyph_menu_admin" aria-hidden="true"></span> Gestion des annonces</a></li>
 
-                                <li><a href="/annonceo/php/back_office/gestion_commentaires.php"><span class="badge pull-right badge_menu_admin"> <?=$nbCommentaires ?> </span><span class="glyphicon glyphicon-pencil pull-right glyph_menu_admin" aria-hidden="true"></span> Gestion des commentaires</a></li>
+                                <li class="menu_txt"><a href="/annonceo/php/back_office/gestion_commentaires.php"><span class="badge pull-right badge_menu_admin"> <?=$nbCommentaires ?> </span><span class="glyphicon glyphicon-pencil pull-right glyph_menu_admin" aria-hidden="true"></span> Gestion des commentaires</a></li>
 
-                                <li><a href="/annonceo/php/back_office/gestion_notes.php"><span class="badge pull-right badge_menu_admin"> <?=$nbNotes ?> </span><span class="glyphicon glyphicon-star pull-right glyph_menu_admin" aria-hidden="true"></span> Gestion des notes</a></li>
+                                <li class="menu_txt"><a href="/annonceo/php/back_office/gestion_notes.php"><span class="badge pull-right badge_menu_admin"> <?=$nbNotes ?> </span><span class="glyphicon glyphicon-star pull-right glyph_menu_admin" aria-hidden="true"></span> Gestion des notes</a></li>
 
-                                <li><a href="/annonceo/php/back_office/histo_connexion.php"><span class="badge pull-right badge_menu_admin"> <?=$nbConnexions ?> </span><span class="glyphicon glyphicon-time pull-right glyph_menu_admin" aria-hidden="true"></span> Historique des connexions</a></li>            
+                                <li class="menu_txt"><a href="/annonceo/php/back_office/histo_connexion.php"><span class="badge pull-right badge_menu_admin"> <?=$nbConnexions ?> </span><span class="glyphicon glyphicon-time pull-right glyph_menu_admin" aria-hidden="true"></span> Historique des connexions</a></li>            
                                 
                                 <li role="separator" class="divider"></li>
 
-                                <li><a href="/annonceo/php/back_office/statistiques.php"><span class="glyphicon glyphicon-stats pull-right" aria-hidden="true"></span> Statistiques/Nettoyage</a></li>
+                                <li class="menu_txt"><a href="/annonceo/php/back_office/statistiques.php"><span  style="color:#647ab7" class="glyphicon glyphicon-stats pull-right" aria-hidden="true"></span> Statistiques/Nettoyage</a></li>
                             <?php } ?>
                         </ul>
                         </li>
@@ -240,7 +263,7 @@ $nbConnexions = $res6['COUNT(id_connexion)'];
             </div> <!-- /.modal-body -->
             <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-            <button type="submit" id="inscription" name="inscription" class="btn btn-primary">S'inscrire</button>
+            <button type="submit" id="inscription" name="inscription" class="btn btn-primary"><span style="margin-right:10px">S'inscrire </span><span style="color:#FFF" class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
             </form> <!-- FIN FORMULAIRE INSCRIPTION -->
             </div>
         </div><!-- /.modal-content -->
@@ -264,7 +287,7 @@ $nbConnexions = $res6['COUNT(id_connexion)'];
                     <div class="form-group">
                         <label for="pseudo_connexion" class="col-sm-4 control-label">Votre pseudo</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="pseudo_connexion" name="pseudo_connexion" placeholder="Votre pseudo..." autofocus>
+                            <input type="text" class="form-control" id="pseudo_connexion" name="pseudo_connexion" placeholder="Votre pseudo..." autofocus />
                         </div>
                     </div>
 
@@ -288,7 +311,7 @@ $nbConnexions = $res6['COUNT(id_connexion)'];
 
             <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-            <button type="submit" id="connexion" name="connexion" class="btn btn-primary">Se connecter</button>
+            <button type="submit" id="connexion" name="connexion" class="btn btn-primary"><span style="margin-right:10px">Se connecter </span><span style="color:#FFF" class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
             </form> <!-- FIN FORMULAIRE CONNEXION -->
             </div>
         </div><!-- /.modal-content -->

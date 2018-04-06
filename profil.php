@@ -1,5 +1,6 @@
 <?php 
 require_once('php_inc/init.php');
+require_once('php_inc/header.php');
 
 //Infos membre
 $req = $pdo->prepare("SELECT * FROM membre WHERE id_membre = :id_membre");
@@ -204,26 +205,7 @@ $infos_membre = $req->fetch(PDO::FETCH_ASSOC);
 
                 $i++;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-        }
-
-        
-       
-
-
-      
-        ?>  
+    } ?>  
         </div>
     </div>
 
@@ -235,9 +217,6 @@ $infos_membre = $req->fetch(PDO::FETCH_ASSOC);
     </div>
 
 </section>
-
-
-
-
-
-</section>
+<?php
+require_once('php_inc/footer.php');
+?>

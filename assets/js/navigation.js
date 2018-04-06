@@ -65,14 +65,6 @@ $('#nav_connexion').on('click',function(e){
     chargtContenuPHP(this,'http://localhost/annonceo/connexion.php','#contenu_ppal');
 });
 
-/*********************************************************/
-/* Vers page PROFIL */
-/*********************************************************/
-$('#nav_profil').on('click',function(e){
-    e.preventDefault();
-    chargtContenuPHP(this,'http://localhost/annonceo/profil.php','#contenu_ppal');
-});
-
 /* Profil => UPDATE PSEUDO */
 $(document).delegate('#profil_pseudo','click',function(){
     var val = $('#profil_pseudo').text(); //alert('Valeur initiale = ' + val);

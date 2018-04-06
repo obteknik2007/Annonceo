@@ -71,8 +71,11 @@ hr{
 .navbar-inverse{
     background: #7abaf5;
 }
-.navbar-nav>li>a{
-    font-size: 13px;  
+.navbar-nav>li>.dropdown-menu{
+     margin-top: 3px;
+}
+.dropdown-menu>li>a{
+    padding: 0 20px;
 }
 .navbar .navbar-brand span{
     font-size: 20px;
@@ -82,7 +85,8 @@ hr{
     color: #000;
 }
 .navbar-inverse .navbar-nav>li>a{
- color:#FFF;   
+    font-size: 13px; 
+    color:#FFF;   
 }
 .navbar-inverse .navbar-nav>li>a:hover{
     color:#dbf549;
@@ -95,6 +99,10 @@ hr{
 .navbar-inverse .navbar-nav .glyphicon:not(.glyph_menu_admin){
     color:#fff;
 }
+.menu_txt{
+    text-shadow:1px 2px 3px rgba(0,0,0, 0.5);
+}
+    
 
 /* form recherche */
 #index_search{
@@ -195,7 +203,8 @@ footer {
 .glyph_menu_admin{
     margin-right: 10px;
 }
-#admin-items.dropdown-menu>li>a {
+#admin-items.dropdown-menu>li>a,
+#espace-membres.dropdown-menu>li>a  {
     text-align: left;
     color:#000;
     padding: 1px 10px;
