@@ -26,12 +26,19 @@
 
         <script src="<?=RACINE_SITE.'assets/js/navigation.js' ?>"></script>        
         <script src="<?=RACINE_SITE.'assets/js/scripts.js' ?>"></script> 
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
+        
         <!-- FLOT -->
-        <script src="<?=RACINE_SITE.'assets/js/toastr.min.js' ?>"></script>
         <script src="<?=RACINE_SITE.'assets/js/jquery.flot.min.js' ?>"></script>
         <script src="<?=RACINE_SITE.'assets/js/jquery.flot.resize.min.js' ?>"></script>
         <script src="<?=RACINE_SITE.'assets/js/jquery.flot.spline.js' ?>"></script>
-        <script src="<?=RACINE_SITE.'assets/js/scripts_graphiques.js' ?>"></script>              
+        <script src="<?=RACINE_SITE.'assets/js/scripts_graphiques.js' ?>"></script> 
+        
+        <script>
+            // Page Home => filtre par intervalle sur le prix
+            $(function(){
+                $("#home_filtre_prix").slider({});
+            });
+        </script>     
     </body>
 </html>

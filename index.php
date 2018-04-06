@@ -58,7 +58,7 @@ $nb_annonces = $res['COUNT(id_annonce)'];
                     </a>
                 </div> <!-- fin carousel -->
 
-            <!-- encarts fixes -->
+            <!-- encarts fixes : http://via.placeholder.com/300x100/ffffff/000000?text=Encart+publicitaire+1 -->
             <img id="index_encart_pub1" src="assets/img/300x100_Encart_publicitaire 1.png" alt="Encart publicitaire1" class="img-responsive">
             <img id="index_encart_pub2" src="assets/img/300x100_Encart_publicitaire 2.png" alt="Encart publicitaire1" class="img-responsive">
             <img id="index_encart_pub3" src="assets/img/300x100_Encart_publicitaire 3.png" alt="Encart publicitaire1" class="img-responsive">
@@ -69,7 +69,7 @@ $nb_annonces = $res['COUNT(id_annonce)'];
         <div class="box-content"> 
             <p>
                 <span id="index_titre_carte">Choisissez votre département...</span>
-                <button id="index_btn_publier" class="btn btn-primary pull-right btn-sm"><a style="color:yellow;text-decoration:none;" href="php/front/publier_annonce.php"><span style="color:yellow" class="glyphicon glyphicon-edit" aria-hidden="true"></span> Publier une annonce</a></button>
+                <button id="index_btn_publier" class="btn btn-primary pull-right btn-sm"><a style="color:yellow;text-decoration:none;" href="php/front/publier_annonce.php"><span style="color:yellow" class="glyphicon glyphicon-edit" aria-hidden="true"></span> Je publie mon annonce</a></button>
             </p>
             <hr><br>
             <div id="map" style="height: 530px;margin: 0 auto;"></div>

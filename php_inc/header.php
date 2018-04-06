@@ -75,6 +75,8 @@ $nbConnexions = $res6['COUNT(id_connexion)'];
     <link rel="stylesheet" href="<?=RACINE_SITE ?>/assets/css/toastr.min.css">
     <link rel="stylesheet" href="<?=RACINE_SITE ?>/assets/css/pace_theme_1.css">
     <link rel="stylesheet" href="<?=RACINE_SITE ?>/assets/css/jquery-jvectormap-2.0.3.css">
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css">
+   
     <!-- css perso -->
     <link rel="stylesheet" href="<?=RACINE_SITE ?>/assets/css/style.css">
 </head>
@@ -102,8 +104,11 @@ $nbConnexions = $res6['COUNT(id_connexion)'];
                     <li class="active menu_txt" id="nav_qui_sommesnous"><a href="php/front/qui_sommesnous.php" >Qui sommes-nous</a></li>
                         <li>
                             <form id="index_form_search" class="navbar-form">
-                                <div class="form-group">
-                                    <input type="text" id="index_search" name="index_search" class="form-control input-sm" placeholder="Recherche...">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                        </span>
+                                    <input type="text" id="index_search" name="index_search" class="form-control input-sm" placeholder="Recherche..." aria-describedby="basic-addon1">
                                 </div>
                             </form>
                         </li>
