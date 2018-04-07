@@ -69,20 +69,29 @@ $(function(){
             //on vide le select
             $("#map-selector").val("");
 
-            $("#list_dept_selected_code").html(map.getSelectedRegions());
+            $("#list_dept_selected_code").html(map.getSelectedRegions()+ ',');
 
             //et on sélectionne chaque option correspondant au département sélectionné sur la carte
             $.each(map.getSelectedRegions(), function (index, region) {
                 $("#map-selector option[value=" + region + "]").prop("selected", true); 
             });
+//on met à jour 
+var ta_variable = '';
+
+  $("select[id='map-selector'] option:selected").each(function() {
+        ta_variable=ta_variable + '|' + $(this).text();
+  });
+
+$("#list_dept_selected").html(ta_variable);
+            
+
+
         }
     });
 
     //au départ si des options du select sont présélectionnés, on les sélectionnes sur la carte
     $("#map-selector option:selected").each(function () {
         map.setSelectedRegions($(this).val());
-
-        //list_regions.push($(this).text());
     });
    
 
