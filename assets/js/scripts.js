@@ -1,7 +1,7 @@
 //alert('');
 $(function(){
     
- $('#map').vectorMap({
+ /*$('#map').vectorMap({
         map: 'fr_merc',
         backgroundColor:  'white', 
         onRegionClick:function(event, code){            
@@ -28,7 +28,7 @@ $(function(){
                     alert(textStatus);
                 }
             }); /* fin ajax */
-            },
+/*            },
         regionStyle:{
               initial: {
                 fill: 'grey',
@@ -49,7 +49,45 @@ $(function(){
               }
             }
 
-});
+});*/
+
+//carte de france départements multi sélection
+//https://numa-bord.com/miniblog/jquery-selection-departements-francais-carte/
+//on masque le select classique
+   // $("#map-selector").css("display", "none");
+    //on ajoute un div #container-map-selector qui contiendra la carte
+    //$("#map-selector").parent().append("<div id='container-map-selector'></div>");
+    //on initie la carte sur cet élément
+
+    var liste;
+    var map = new jvm.Map({
+        container: $("#container-map-selector"),
+        map: 'fr_merc',
+        regionsSelectable: true,
+       //à chaque clic sur un département
+        onRegionSelected: function () {
+            //on vide le select
+            $("#map-selector").val("");
+
+            $("#list_dept_selected_code").html(map.getSelectedRegions());
+
+            //et on sélectionne chaque option correspondant au département sélectionné sur la carte
+            $.each(map.getSelectedRegions(), function (index, region) {
+                $("#map-selector option[value=" + region + "]").prop("selected", true); 
+            });
+        }
+    });
+
+    //au départ si des options du select sont présélectionnés, on les sélectionnes sur la carte
+    $("#map-selector option:selected").each(function () {
+        map.setSelectedRegions($(this).val());
+
+        //list_regions.push($(this).text());
+    });
+   
+
+
+/****************************************************/
 $('#retour_index_publier').on('click',function(e){
   e.preventDefault();
   document.location.href = "index.php";

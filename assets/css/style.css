@@ -13,6 +13,8 @@ body{
 #contenu_ppal{
     min-height: 620px;
 }
+#container-map-selector{height: 530px;}
+#map-selector{height: 530px}
 h1{
     font-size: 27px;
     text-align: center;
