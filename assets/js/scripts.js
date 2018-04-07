@@ -69,7 +69,7 @@ $(function(){
             //on vide le select
             $("#map-selector").val("");
 
-            $("#list_dept_selected_code").html(map.getSelectedRegions()+ ',');
+            $("#list_dept_selected_code").html('<strong>' + map.getSelectedRegions()+ ',' + '</strong>');
 
             //et on sélectionne chaque option correspondant au département sélectionné sur la carte
             $.each(map.getSelectedRegions(), function (index, region) {
@@ -82,7 +82,7 @@ var ta_variable = '';
         ta_variable=ta_variable + '|' + $(this).text();
   });
 
-$("#list_dept_selected").html(ta_variable);
+$("#list_dept_selected").html('<strong>' + ta_variable + '</strong>');
             
 
 
