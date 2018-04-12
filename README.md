@@ -12,6 +12,8 @@ Outils utilisés :</p>
 <li>HTML5 - CSS3 - Bootstrap3</li>
 <li>PHP procédural - MySQL</li>
 <li>Jquery</li>
+<li>Plugins : jVectorMaps.js</li>
+<li>API :</li>
 </ul>
 <p>En cours de développement<br>
 Index.php</p>
