@@ -7,13 +7,18 @@ require_once('php_inc/header.php');
 $req = $pdo->query("SELECT COUNT(id_annonce) FROM annonce");
 $res = $req->fetch(PDO::FETCH_ASSOC);
 $nb_annonces = $res['COUNT(id_annonce)'];
-?>
-<?php 
+
     /*
     echo '<pre>';
     var_dump($_SESSION);
     var_dump($_COOKIE) 
     echo '</pre>';*/
+
+//je récupère le code départt si connecté
+/*if(isset($_GET['code_dept'])){
+    echo $_GET['code_dept'];
+}*/
+
 ?>
 
 <div class="row">
@@ -75,7 +80,15 @@ $nb_annonces = $res['COUNT(id_annonce)'];
             <br>
             <div class="row">
                 <div class="col-md-12"> 
-                    <small>Département(s) sélectionné(s) - code : <span id="list_dept_selected_code"></span></small><br>
+                    
+                        <?php 
+                        if(isset($_GET['code_dept'])){
+                            echo '<small>Département sélectionné - code : '.$_GET['code_dept'];
+                        } else { //non connecté
+                            echo '<small>Département(s) sélectionné(s) - code : ';
+                        }
+                        ?>
+                        <span id="list_dept_selected_code"></span></small><br>
                     <small>Département(s) sélectionné(s) : <span id="list_dept_selected"></span></small>
                 </div>
             </div>
@@ -84,8 +97,8 @@ $nb_annonces = $res['COUNT(id_annonce)'];
                 <div class="col-md-3"> <!-- Liste des départements -->
                 <form>
                     <select id="map-selector" name="departements" multiple="multiple">
-                        <option selected value="FR-01">Ain</option>
-                        <option selected value="FR-02">Aisne</option>
+                        <option value="FR-01">Ain</option>
+                        <option value="FR-02">Aisne</option>
                         <option value="FR-03">Allier</option>
                         <option value="FR-04">Alpes-de-Haute-Provence</option>
                         <option value="FR-05">Hautes-Alpes</option>
@@ -162,7 +175,8 @@ $nb_annonces = $res['COUNT(id_annonce)'];
                         <option value="FR-75">Paris</option>
                         <option value="FR-76">Seine-Maritime</option>
                         <option value="FR-77">Seine-et-Marne</option>
-                        <option value="FR-78">Yvelines</option>
+                        <option <?=((isset($_GET['code_dept']) 
+                            && $_GET['code_dept'] == 'FR-78')) ? 'selected' : ''?> value="FR-78">Yvelines</option>
                         <option value="FR-79">Deux-Sèvres</option>
                         <option value="FR-80">Somme</option>
                         <option value="FR-81">Tarn</option>
@@ -173,7 +187,8 @@ $nb_annonces = $res['COUNT(id_annonce)'];
                         <option value="FR-86">Vienne</option>
                         <option value="FR-87">Haute-Vienne</option>
                         <option value="FR-88">Vosges</option>
-                        <option value="FR-89">Yonne</option>
+                        <option <?=((isset($_GET['code_dept']) 
+                            && $_GET['code_dept'] == 'FR-89')) ? 'selected' : ''?> value="FR-89">Yonne</option>
                         <option value="FR-90">Territoire de Belfort</option>
                         <option value="FR-91">Essonne</option>
                         <option value="FR-92">Hauts-de-Seine</option>

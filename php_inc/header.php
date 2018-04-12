@@ -208,24 +208,30 @@ $nbConnexions = $res6['COUNT(id_connexion)'];
                 <form novalidate method="post" class="form-horizontal" action="">
                     <!-- pseudo -->
                     <div class="form-group">
-                        <label for="pseudo_inscription" class="col-sm-4 control-label">Pseudo :</label>
-                        <div class="col-sm-5">
+                        <label for="pseudo_inscription" class="col-sm-4 control-label">Pseudo* :</label>
+                        <div class="col-sm-7">
                             <input type="text" class="form-control" id="pseudo_inscription" name="pseudo_inscription" placeholder="Votre pseudo..." value="<?=$_POST['pseudo_inscription'] ?? '' ?>" required autocus>
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="glyphicon glyphicon-question-sign glyphicon-help" title="Taille comprise entre 1 et 20  caractères"></span>
                         </div>
                     </div>
 
                     <!-- mot de passe -->
                     <div class="form-group">
-                        <label for="mdp_inscription" class="col-sm-4 control-label">Mot de passe :</label>
-                        <div class="col-sm-5">
+                        <label for="mdp_inscription" class="col-sm-4 control-label">Mot de passe* :</label>
+                        <div class="col-sm-7">
                             <input type="password" class="form-control" id="mdp_inscription" name="mdp_inscription" placeholder="Votre mot de passe..." required >
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="glyphicon glyphicon-question-sign glyphicon-help" title="composé de..."></span>
                         </div>
                     </div>
 
                     <!-- civilité -->
                     <div class="form-group">
-                        <label for="civilite" class="col-sm-4 control-label">Civilité :</label>
-                        <div class="col-sm-5 pull-left">
+                        <label for="civilite" class="col-sm-4 control-label">Civilité* :</label>
+                        <div class="col-sm-7 pull-left">
                             Monsieur <input type="radio" id="civilite" name="civilite" value="m" <?=((isset($_POST['civilite']) 
                             && $_POST['civilite'] == 'm')) || !isset($_POST['civilite']) ? 'checked' : ''?>>
                                 Madame <input type="radio"  id="civilite" name="civilite" value="f" <?=((isset($_POST['civilite']) 
@@ -235,33 +241,57 @@ $nbConnexions = $res6['COUNT(id_connexion)'];
 
                     <!-- prénom -->
                     <div class="form-group">
-                        <label for="prenom" class="col-sm-4 control-label">Prénom :</label>
-                        <div class="col-sm-5">
+                        <label for="prenom" class="col-sm-4 control-label">Prénom* :</label>
+                        <div class="col-sm-7">
                             <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Votre prénom..." value="<?=$_POST['prenom'] ?? '' ?>">
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="glyphicon glyphicon-question-sign glyphicon-help" title="Taille comprise entre 1 et 20  caractères"></span>
                         </div>
                     </div>
 
                     <!-- nom -->
                     <div class="form-group">
-                        <label for="nom" class="col-sm-4 control-label">Nom :</label>
-                        <div class="col-sm-5">
+                        <label for="nom" class="col-sm-4 control-label">Nom* :</label>
+                        <div class="col-sm-7">
                             <input type="text" class="form-control" id="nom" name="nom" placeholder="Votre nom..." value="<?=$_POST['nom'] ?? '' ?>">
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="glyphicon glyphicon-question-sign glyphicon-help" title="Taille comprise entre 1 et 20  caractères"></span>
                         </div>
                     </div>
 
                     <!-- email -->
                     <div class="form-group">
-                        <label for="email" class="col-sm-4 control-label">Email :</label>
-                        <div class="col-sm-5">
+                        <label for="email" class="col-sm-4 control-label">Email* :</label>
+                        <div class="col-sm-7">
                             <input type="email" class="form-control" id="email" name="email" placeholder="Votre email..." value="<?=$_POST['email'] ?? '' ?>">
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="glyphicon glyphicon-question-sign glyphicon-help" title="Format email obligatoire"></span>
                         </div>
                     </div>
 
                     <!-- telephone -->
                     <div class="form-group">
                         <label for="telephone" class="col-sm-4 control-label">Téléphone :</label>
-                        <div class="col-sm-5">
+                        <div class="col-sm-7">
                             <input type="text" class="form-control" id="telephone" name="telephone" placeholder="Votre n° de telephone..." value="<?=$_POST['telephone'] ?? '' ?>">
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="glyphicon glyphicon-question-sign glyphicon-help" title="Taille comprise entre 1 et 20 caractères"></span>
+                        </div>
+                    </div>
+
+                    <!-- code postal -->
+                    <div class="form-group">
+                        <label for="cp" class="col-sm-4 control-label">Votre code postal :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="cp" name="cp" placeholder="Votre code postal..." value="<?=$_POST['cp'] ?? '' ?>">
+                            <small>Si renseigné, géolocalisera votre recherche</small>
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="glyphicon glyphicon-question-sign glyphicon-help" title="Taille de 5  caractères chiffrés"></span>
                         </div>
                     </div>
 

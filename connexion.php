@@ -1,8 +1,7 @@
 <?php
 require_once('php_inc/init.php');
 
-//traitement connexion
-//Déconnexion
+// Traitement DECONNEXION
 if(isset($_POST['action']) && $_POST['action'] == 'deconnexion'){
     
     unset($_SESSION['membre']);
@@ -12,7 +11,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'deconnexion'){
     echo 'ok';
 }
 
-//Traitement soumission du formulaire
+// Traitement FORMULAIRE DE CONNEXION
 if(isset($_POST['action']) && $_POST['action'] =='connexion'){ 
 
     //cryptage du mot de passe saisi pour le comparer au mdp en bdd
@@ -47,9 +46,8 @@ if(isset($_POST['action']) && $_POST['action'] =='connexion'){
             $session->setFlash("Vous êtes maintenant connecté sur notre site !"); 
         }
         
-
         //retour ajax
-        echo 'ok';
+        echo 'ok-'.$membre['cp'];
     } else {
         echo 'KO';
     }

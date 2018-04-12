@@ -47,6 +47,10 @@ hr{
     margin: 0;
     border-color: #1C3144;
 }
+.glyphicon-help{
+    font-size: 20px;
+    cursor: pointer;
+}
 .page-header{
     margin: 10px 0 20px;
 }

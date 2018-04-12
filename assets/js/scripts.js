@@ -75,19 +75,17 @@ $(function(){
             $.each(map.getSelectedRegions(), function (index, region) {
                 $("#map-selector option[value=" + region + "]").prop("selected", true); 
             });
-//on met à jour 
-var ta_variable = '';
 
-  $("select[id='map-selector'] option:selected").each(function() {
-        ta_variable=ta_variable + '|' + $(this).text();
-  });
+            //on met à jour 
+            var ta_variable = '';
 
-$("#list_dept_selected").html('<strong>' + ta_variable + '</strong>');
-            
+              $("select[id='map-selector'] option:selected").each(function() {
+                    ta_variable=ta_variable + '|' + $(this).text();
+              });
 
-
-        }
-    });
+            $("#list_dept_selected").html('<strong>' + ta_variable + '</strong>');
+        } //FIN onRegionSelected
+    }); // FIN new jvm.Map
 
     //au départ si des options du select sont présélectionnés, on les sélectionnes sur la carte
     $("#map-selector option:selected").each(function () {
@@ -120,12 +118,25 @@ $('#connexion').on('click',function(e){
             toastr.options = {closeButton: true,progressBar: true,showMethod: 'fadeIn',timeOut: 2000};
             toastr.warning('Erreur sur les identifiants');
         }, 1300);
-      } else {
+      } else { //OK CONNEXION
+        var str = data;
+        var res = str.split("-");
         setTimeout(function () {
           toastr.options = {closeButton: true,progressBar: true,showMethod: 'fadeIn',timeOut: 2000};
           toastr.success('Vous êtes connecté.');
 
-          document.location.href="index.php";
+          //je récupère le code postal et en déduis le département, je sélectionne celui-ci dans la combo dépts
+          var code_dept = 'FR-' + res[1].substring(0,2);
+          //console.log(code_dept);
+
+         // $('#ModalFormConnexion').modal('hide');
+         //réactualisation page pour mise à jour bandeau header =>profil, se déconnecter 
+         //on passe le code départt en get
+         document.location.href="index.php?code_dept=" + code_dept;
+          //$("#map-selector").val("FR-78").prop('selected',true);
+
+
+
       }, 1300);
 
       
@@ -164,6 +175,7 @@ $('#inscription').on('click',function(e){
  var nom                = $('#nom').val();
  var telephone          = $('#telephone').val();
  var email              = $('#email').val();
+ var cp                 = $('#cp').val();
 
 //envoi AJAX
  
@@ -173,7 +185,8 @@ $('#inscription').on('click',function(e){
   '&prenom=' + prenom +
   '&nom=' + nom +
   '&telephone=' + telephone +
-  '&email=' + email,
+  '&email=' + email +
+  '&cp=' + cp,
   function(json){
     //OK INSCRIPTION EFFECTUEE
      if(json == 'ok'){
@@ -182,12 +195,11 @@ $('#inscription').on('click',function(e){
         toastr.success('Merci de vous être inscrit sur notre site d\'annonces en ligne.');
     }, 1300);
 
-      document.location.href="http://localhost/annonceo/index.php";
+      document.location.href="index.php";
 
      } else {
        // ERREURS / TABLEAU JSON
-       $('#inscription_erreurs').html(
-        '<ul id="list_erreurs"></ul>');
+       $('#inscription_erreurs').html('<div class="alert alert-danger"><ul id="list_erreurs"></ul></div>');
 
       //CORPS liste : JE PARCOURE LES DATAS JSON ACTIONS
       $.each(json, function (index, value) {
