@@ -43,7 +43,7 @@ if(isset($_POST['action']) && $_POST['action'] =='connexion'){
         if($_SESSION['membre']['statut'] == 1){
             $session->setFlash("Vous êtes maintenant connecté en tant qu'administrateur sur notre site !"); 
         } else {
-            $session->setFlash("Vous êtes maintenant connecté sur notre site !"); 
+            $session->setFlash("Vous êtes maintenant connecté sur notre site, et votre recherche est prégéolocalisée sur votre département (en jaune sur la carte de France)."); 
         }
         
         //retour ajax

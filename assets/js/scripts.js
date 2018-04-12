@@ -93,7 +93,6 @@ $(function(){
     });
    
 
-
 /****************************************************/
 $('#retour_index_publier').on('click',function(e){
   e.preventDefault();
