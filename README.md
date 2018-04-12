@@ -10,7 +10,7 @@ Outils utilisés :</p>
 </blockquote>
 <ul>
 <li>HTML5 - CSS3 - Bootstrap3</li>
-<li>PHP procédural</li>
+<li>PHP procédural - MySQL</li>
 <li>Jquery</li>
 </ul>
 <p>En cours de développement<br>
