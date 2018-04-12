@@ -23,6 +23,11 @@ Outils utilisés :</p>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Si connexion n’est pas admin, rechercher quel est le code postal attaché au membre et colorer le département concerné sur la carte de France + sélection combo dépts + affichage nom du dépt en haut</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Récupération des codes dépt pour envoi ajax à page Home.php</li>
 </ul>
-<p><em>Formulaires</em><br>
-Apposer les ‘*’ sur les champs obligatoires</p>
+<p><em>Formulaires</em></p>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Apposer les ‘*’ sur les champs obligatoires</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> title pswd : règles sécurité mot de passe</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> force pswd: pugin indiquer niveau sécurité</li>
+<li>[ ]</li>
+</ul>
 
