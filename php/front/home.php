@@ -2,14 +2,14 @@
 require_once('../../php_inc/init.php');
 require_once('../../php_inc/header.php');
 
-//if(isset($_GET['dept'])){
-    $dept = $_GET['dept'];
-    //$dept = substr($_GET['dept'],-2,2);
-/*} else {
-    $dept = 77;
-}*/
-$dept = substr($_GET['dept'],-2,2);
-//echo $dept;
+if(isset($_POST)){
+
+
+    foreach($_POST['departements'] as $valeur)
+    {
+    echo $valeur.' a été sélectionné<br>';
+    }
+}
     $sql_list_annonces = "
     SELECT 
     ANN.id_annonce,
@@ -32,7 +32,7 @@ $dept = substr($_GET['dept'],-2,2);
     ORDER BY ANN.date_enregistrement DESC";
 
     $annonces_filtrees = $pdo->prepare($sql_list_annonces);
-    $annonces_filtrees->execute(array('dept'=>$dept));
+    $annonces_filtrees->execute(array('dept'=> 77));
 
     /***************************/
     /* REMPLISSAGE DES FILTRES */
@@ -64,7 +64,7 @@ $dept = substr($_GET['dept'],-2,2);
     <hr style="border-color:#647ab7;margin-bottom:15px">
     <div class="row">
         <div class="col-md-10">
-            <small>Filtres : Département : <?=$_GET['dept'] ?></small>
+            <small>Filtres : Département : <?=77 ?></small>
         </div>
         <div class="col-md-2">
             <small class="pull-right">Nombre de résultats :<?= $annonces_filtrees->rowCount() ?></small>

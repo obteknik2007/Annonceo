@@ -55,7 +55,7 @@ hr{
     margin: 10px 0 20px;
 }
 .box-content{
-    background: #a8c7f5;
+    background: #fff;
     -webkit-box-shadow: 1px 1px 15px 0px rgba(115,108,115,1);
     -moz-box-shadow: 1px 1px 15px 0px rgba(115,108,115,1);
     box-shadow: 1px 1px 15px 0px rgba(115,108,115,1);
@@ -139,9 +139,20 @@ footer {
 #index_nb_annonces,#index_titre_carte{
     font-size: 15px;
     font-weight: bold;
+    
 }
 #index_nb_annonces_ggl{
     font-weight: bold;
+}
+#infos_connexion{
+    margin-bottom: 10px;
+}
+#index_login{
+    font-size: 12px;
+}
+.index_encart_pub{
+    border: 1px solid grey;
+    
 }
 #index_marque{
     font-size: 15px;

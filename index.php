@@ -15,14 +15,19 @@ $nb_annonces = $res['COUNT(id_annonce)'];
     echo '</pre>';*/
 
 //je parcoure $_GET pour récupérer les codes dept
+echo '<pre>';
+var_dump($_GET);
+var_dump($_SERVER['QUERY_STRING']);
+echo '</pre>';
 if(isset($_GET)){
+    $url_get = $_SERVER['QUERY_STRING'];
     $liste_depts = implode(",",$_GET);
 }
 ?>
 
-<div class="row">
+<div class="row" style="margin-bottom:15px;">
     <div class="col-md-4"> <!-- BLOC GAUCHE -->
-        <div class="box-content" style="min-height: 602px;">      
+        <div class="box-content" style="min-height: 644px;">      
             <!-- Texte -->
             <p><span id="index_nb_annonces"><?=$nb_annonces ?> annonces</span> disponibles sur <span id="index_marque">Annonceo</span> !</p>
             
@@ -63,9 +68,9 @@ if(isset($_GET)){
                 </div> <!-- fin carousel -->
 
             <!-- encarts fixes : http://via.placeholder.com/300x100/ffffff/000000?text=Encart+publicitaire+1 -->
-            <img id="index_encart_pub1" src="assets/img/300x100_Encart_publicitaire 1.png" alt="Encart publicitaire1" class="img-responsive">
-            <img id="index_encart_pub2" src="assets/img/300x100_Encart_publicitaire 2.png" alt="Encart publicitaire1" class="img-responsive">
-            <img id="index_encart_pub3" src="assets/img/300x100_Encart_publicitaire 3.png" alt="Encart publicitaire1" class="img-responsive">
+            <img class="index_encart_pub center-block" src="assets/img/300x100_Encart_publicitaire 1.png" alt="Encart publicitaire1" class="img-responsive">
+            <img class="index_encart_pub center-block" src="assets/img/300x100_Encart_publicitaire 2.png" alt="Encart publicitaire1" class="img-responsive">
+            <img class="index_encart_pub center-block" src="assets/img/300x100_Encart_publicitaire 3.png" alt="Encart publicitaire1" class="img-responsive">
         </div> <!-- fin col-md-4 -->
     </div> <!-- fin box-content -->
 
@@ -75,32 +80,45 @@ if(isset($_GET)){
                 <span id="index_titre_carte">Choisissez votre département...</span>
                 <button id="index_btn_publier" class="btn btn-primary pull-right btn-sm"><a style="color:yellow;text-decoration:none;" href="php/front/publier_annonce.php"><span style="color:yellow" class="glyphicon glyphicon-edit" aria-hidden="true"></span> Je publie mon annonce</a></button>
             </p>
-            <hr>
-            <br>
+            <div class="clearfix"></div>
+            <hr style="border-color:#000;margin-top:10px;">
+            
             <div class="row">
-                <div class="col-md-12"> 
-                    
-                        <?php 
-                        if(isset($_GET)){
-                            echo 'Département sélectionné - code : '.$liste_depts.'</br>';
-                            echo 'Département sélectionné : '.$liste_depts;
+                <div class="col-md-12">  
+                        <?php if(isset($_GET)){
+                            echo '<small>Département sélectionné : '.$liste_depts.'</small>';
                         } else { //non connecté
-                            echo 'Département(s) sélectionné(s) - code : <span id="list_dept_selected_code"></span><br>';
-                            echo 'Département(s) sélectionné(s) : <span id="list_dept_selected"></span>';
-                        }
-                        ?>
-                        
-                    
+                            echo '<small>Département(s) sélectionné(s) : <span id="list_dept_selected"></span></small>';
+                        } ?>
+                        <hr style="border-color:#000;margin-bottom:10px;">
                 </div>
             </div>
             
             <div class="row">
                 <div class="col-md-4"> <!-- Liste des départements -->
-                <form>
-                    <select id="map-selector" name="departements" multiple="multiple">
-                       
-                       <?php
-                        $tab_dept = array();
+                <?php 
+                //Reconstitution de l'url
+                /*$nb_get = count($_GET);
+                echo '</pre>';
+                var_dump($_GET);
+                var_dump($nb_get);
+                echo '</pre>';
+                
+                $list_url_get = '';
+                foreach($_GET as $key => $dept){
+                    $list_url_get .= $key.'='.$dept.'&';
+                }
+                echo '</pre>';
+                var_dump($_GET);
+                var_dump($nb_get);
+                var_dump($url_get);
+                var_dump($list_url_get); 
+                echo '</pre>';*/
+                ?>
+                <form method="POST" action="php/front/home.php">
+                
+                    <select id="map-selector" name="departements[]" multiple="multiple">
+                       <?php $tab_dept = array();
                         $tab_dept = [
                             '01' => 'Ain',
                             '02' => 'Aisne',
@@ -213,7 +231,7 @@ if(isset($_GET)){
                 </div>
                 <div class="col-md-8" id="carte"> <!-- Carte des départements -->
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block" id="dept_search">Lancer la recherche</button>
+                        <button style="color:yellow" type="submit" class="btn btn-primary btn-block" id="dept_search">Lancer la recherche</button>
                     </div>
                     <div id='container-map-selector'></div>
                 </div>
