@@ -18,7 +18,6 @@ $nb_annonces = $res['COUNT(id_annonce)'];
 if(isset($_GET)){
     $liste_depts = implode(",",$_GET);
 }
-
 ?>
 
 <div class="row">
@@ -213,14 +212,12 @@ if(isset($_GET)){
                     </select>
                 </div>
                 <div class="col-md-8" id="carte"> <!-- Carte des départements -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block" id="dept_search">Lancer la recherche</button>
+                    </div>
                     <div id='container-map-selector'></div>
                 </div>
-            </div> <!-- fin row -->
-            
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block" id="dept_search">Lancer la recherche</button>
-            </div>
-            </div>
+            </div> <!-- fin row -->            
             </form>
     </div> <!-- fin col-md-8 -->
 </div> <!-- fin row -->
