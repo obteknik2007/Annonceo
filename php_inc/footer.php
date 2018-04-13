@@ -34,11 +34,3 @@
         <script src="<?=RACINE_SITE.'assets/js/jquery.flot.spline.js' ?>"></script>
         <script src="<?=RACINE_SITE.'assets/js/scripts_graphiques.js' ?>"></script> 
         
-        <script>
-            // Page Home => filtre par intervalle sur le prix
-            $(function(){
-                $("#home_filtre_prix").slider({});
-            });
-        </script>     
-    </body>
-</html>

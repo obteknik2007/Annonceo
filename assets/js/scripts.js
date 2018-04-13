@@ -93,6 +93,7 @@ $(function(){
     });
    
 
+
 /****************************************************/
 $('#retour_index_publier').on('click',function(e){
   e.preventDefault();
@@ -118,29 +119,30 @@ $('#connexion').on('click',function(e){
             toastr.warning('Erreur sur les identifiants');
         }, 1300);
       } else { //OK CONNEXION
-        var str = data;
-        var res = str.split("-");
+        //var str = data;
+        //var res = str.split("-");
         setTimeout(function () {
           toastr.options = {closeButton: true,progressBar: true,showMethod: 'fadeIn',timeOut: 2000};
           toastr.success('Vous êtes connecté.');
 
           //je récupère le code postal et en déduis le département, je sélectionne celui-ci dans la combo dépts
-          var code_dept = 'FR-' + res[1].substring(0,2);
-          //console.log(code_dept);
+          var stringDept = '';
+          $.each(data, function (index, value) {
+            //j'enlève 'FR-'
+            value = value.substring(3,value.length);
+            stringDept += 'code_dept' + index + '=' + value + '&';
+          });
 
-         // $('#ModalFormConnexion').modal('hide');
+          //je supprime le dernier caractère &
+          stringDept = stringDept.substring(0,stringDept.length-1);
+
          //réactualisation page pour mise à jour bandeau header =>profil, se déconnecter 
-         //on passe le code départt en get
-         document.location.href="index.php?code_dept=" + code_dept;
-          //$("#map-selector").val("FR-78").prop('selected',true);
+         //on passe le(s) code(s) dept en get
+         document.location.href="index.php?" + stringDept;
 
-
-
-      }, 1300);
-
-      
+      }, 1300); //{} fin setTimeout
       }
-  },'html');
+  },'json');
 }); //{} connexion
 
 /***  DECONNEXION ***/
@@ -155,7 +157,6 @@ $('#deconnexion').on('click',function(e){
         toastr.success('Vous êtes maintenant déconnecté.');
     }, 1300);
       document.location.href="index.php";
-      //window.location = window.location;
     } 
 },'html');
 }); //{} déconnexion

@@ -14,10 +14,10 @@ $nb_annonces = $res['COUNT(id_annonce)'];
     var_dump($_COOKIE) 
     echo '</pre>';*/
 
-//je récupère le code départt si connecté
-/*if(isset($_GET['code_dept'])){
-    echo $_GET['code_dept'];
-}*/
+//je parcoure $_GET pour récupérer les codes dept
+if(isset($_GET)){
+    $liste_depts = implode(",",$_GET);
+}
 
 ?>
 
@@ -82,9 +82,9 @@ $nb_annonces = $res['COUNT(id_annonce)'];
                 <div class="col-md-12"> 
                     
                         <?php 
-                        if(isset($_GET['code_dept'])){
-                            echo 'Département sélectionné - code : '.$_GET['code_dept'].'</br>';
-                            echo 'Département sélectionné : '.$_GET['code_dept'];
+                        if(isset($_GET)){
+                            echo 'Département sélectionné - code : '.$liste_depts.'</br>';
+                            echo 'Département sélectionné : '.$liste_depts;
                         } else { //non connecté
                             echo 'Département(s) sélectionné(s) - code : <span id="list_dept_selected_code"></span><br>';
                             echo 'Département(s) sélectionné(s) : <span id="list_dept_selected"></span>';
@@ -103,112 +103,112 @@ $nb_annonces = $res['COUNT(id_annonce)'];
                        <?php
                         $tab_dept = array();
                         $tab_dept = [
-                            'FR-01' => 'Ain',
-                            'FR-02' => 'Aisne',
-                            'FR-03' => 'Allier',
-                            'FR-04' => 'Alpes-de-Haute-Provence',
-                            'FR-05' => 'Hautes-Alpes',
-                            'FR-06' => 'Alpes-Maritimes',
-                            'FR-07' => 'Ardèche',
-                            'FR-08' => 'Ardennes',
-                            'FR-09' => 'Ariège',
-                            'FR-10' => 'Aube',
-                            'FR-11' => 'Aude',
-                            'FR-12' => 'Aveyron',
-                            'FR-13' => 'Bouches-du-Rhône',
-                            'FR-14' => 'Calvados',
-                            'FR-15' => 'Cantal',
-                            'FR-16' => 'Charente',
-                            'FR-17' => 'Charente-Maritime',
-                            'FR-18' => 'Cher',
-                            'FR-19' => 'Corrèze',
-                            'FR-2A' => 'Corse-du-sud',
-                            'FR-2B' => 'Haute-corse',
-                            'FR-21' => 'Côte-d\'or',
-                            'FR-22' => 'Côtes-d\'armor',
-                            'FR-23' => 'Creuse',
-                            'FR-24' => 'Dordogne',
-                            'FR-25' => 'Doubs',
-                            'FR-26' => 'Drôme',
-                            'FR-27' => 'Eure',
-                            'FR-28' => 'Eure-et-Loir',
-                            'FR-29' => 'Finistère',
-                            'FR-30' => 'Gard',
-                            'FR-31' => 'Haute-Garonne',
-                            'FR-32' => 'Gers',
-                            'FR-33' => 'Gironde',
-                            'FR-34' => 'Hérault',
-                            'FR-35' => 'Ile-et-Vilaine',
-                            'FR-36' => 'Indre',
-                            'FR-37' => 'Indre-et-Loire',
-                            'FR-38' => 'Isère',
-                            'FR-39' => 'Jura',
-                            'FR-40' => 'Landes',
-                            'FR-41' => 'Loir-et-Cher',
-                            'FR-42' => 'Loire',
-                            'FR-43' => 'Haute-Loire',
-                            'FR-44' => 'Loire-Atlantique',
-                            'FR-44' => 'Loiret',
-                            'FR-46' => 'Lot',
-                            'FR-47' => 'Lot-et-Garonne',
-                            'FR-48' => 'Lozère',
-                            'FR-49' => 'Maine-et-Loire',
-                            'FR-50' => 'Manche',
-                            'FR-51' => 'Marne',
-                            'FR-52' => 'Haute-Marne',
-                            'FR-53' => 'Mayenne',
-                            'FR-54' => 'Meurthe-et-Moselle',
-                            'FR-55' => 'Meuse',
-                            'FR-56' => 'Morbihan',
-                            'FR-57' => 'Moselle',
-                            'FR-58' => 'Nièvre',
-                            'FR-59' => 'Nord',
-                            'FR-60' => 'Oise',
-                            'FR-61' => 'Orne',
-                            'FR-62' => 'Pas-de-Calais',
-                            'FR-63' => 'Puy-de-Dôme',
-                            'FR-64' => 'Pyrénées-Atlantiques',
-                            'FR-65' => 'Hautes-Pyrénées',
-                            'FR-66' => 'Pyrénées-Orientales',
-                            'FR-67' => 'Bas-Rhin',
-                            'FR-68' => 'Haut-Rhin',
-                            'FR-69' => 'Rhône',
-                            'FR-70' => 'Haute-Saône',
-                            'FR-71' => 'Saône-et-Loire',
-                            'FR-72' => 'Sarthe',
-                            'FR-73' => 'Savoie',
-                            'FR-74' => 'Haute-Savoie',
-                            'FR-75' => 'Paris',
-                            'FR-76' => 'Seine-Maritime',
-                            'FR-77' => 'Seine-et-Marne',
-                            'FR-78' => 'Yvelines',
-                            'FR-79' => 'Deux-Sèvres',
-                            'FR-80' => 'Somme',
-                            'FR-81' => 'Tarn',
-                            'FR-82' => 'Tarn-et-Garonne',
-                            'FR-83' => 'Var',
-                            'FR-84' => 'Vaucluse',
-                            'FR-85' => 'Vendée',
-                            'FR-86' => 'Vienne',
-                            'FR-87' => 'Haute-Vienne',
-                            'FR-88' => 'Vosges',
-                            'FR-89' => 'Yonne',
-                            'FR-90' => 'Territoire de Belfort',
-                            'FR-91' => 'Essonne',
-                            'FR-92' => 'Hauts-de-Seine',
-                            'FR-93' => 'Seine-Saint-Denis',
-                            'FR-94' => 'Val-de-Marne',
-                            'FR-95' => 'Val-d\'oise',
-                            'FR-976' => 'Mayotte',
-                            'FR-971' => 'Guadeloupe',
-                            'FR-973' => 'Guyane',
-                            'FR-972' => 'Martinique',
-                            'FR-974' => 'Réunion'
+                            '01' => 'Ain',
+                            '02' => 'Aisne',
+                            '03' => 'Allier',
+                            '04' => 'Alpes-de-Haute-Provence',
+                            '05' => 'Hautes-Alpes',
+                            '06' => 'Alpes-Maritimes',
+                            '07' => 'Ardèche',
+                            '08' => 'Ardennes',
+                            '09' => 'Ariège',
+                            '10' => 'Aube',
+                            '11' => 'Aude',
+                            '12' => 'Aveyron',
+                            '13' => 'Bouches-du-Rhône',
+                            '14' => 'Calvados',
+                            '15' => 'Cantal',
+                            '16' => 'Charente',
+                            '17' => 'Charente-Maritime',
+                            '18' => 'Cher',
+                            '19' => 'Corrèze',
+                            '2A' => 'Corse-du-sud',
+                            '2B' => 'Haute-corse',
+                            '21' => 'Côte-d\'or',
+                            '22' => 'Côtes-d\'armor',
+                            '23' => 'Creuse',
+                            '24' => 'Dordogne',
+                            '25' => 'Doubs',
+                            '26' => 'Drôme',
+                            '27' => 'Eure',
+                            '28' => 'Eure-et-Loir',
+                            '29' => 'Finistère',
+                            '30' => 'Gard',
+                            '31' => 'Haute-Garonne',
+                            '32' => 'Gers',
+                            '33' => 'Gironde',
+                            '34' => 'Hérault',
+                            '35' => 'Ile-et-Vilaine',
+                            '36' => 'Indre',
+                            '37' => 'Indre-et-Loire',
+                            '38' => 'Isère',
+                            '39' => 'Jura',
+                            '40' => 'Landes',
+                            '41' => 'Loir-et-Cher',
+                            '42' => 'Loire',
+                            '43' => 'Haute-Loire',
+                            '44' => 'Loire-Atlantique',
+                            '44' => 'Loiret',
+                            '46' => 'Lot',
+                            '47' => 'Lot-et-Garonne',
+                            '48' => 'Lozère',
+                            '49' => 'Maine-et-Loire',
+                            '50' => 'Manche',
+                            '51' => 'Marne',
+                            '52' => 'Haute-Marne',
+                            '53' => 'Mayenne',
+                            '54' => 'Meurthe-et-Moselle',
+                            '55' => 'Meuse',
+                            '56' => 'Morbihan',
+                            '57' => 'Moselle',
+                            '58' => 'Nièvre',
+                            '59' => 'Nord',
+                            '60' => 'Oise',
+                            '61' => 'Orne',
+                            '62' => 'Pas-de-Calais',
+                            '63' => 'Puy-de-Dôme',
+                            '64' => 'Pyrénées-Atlantiques',
+                            '65' => 'Hautes-Pyrénées',
+                            '66' => 'Pyrénées-Orientales',
+                            '67' => 'Bas-Rhin',
+                            '68' => 'Haut-Rhin',
+                            '69' => 'Rhône',
+                            '70' => 'Haute-Saône',
+                            '71' => 'Saône-et-Loire',
+                            '72' => 'Sarthe',
+                            '73' => 'Savoie',
+                            '74' => 'Haute-Savoie',
+                            '75' => 'Paris',
+                            '76' => 'Seine-Maritime',
+                            '77' => 'Seine-et-Marne',
+                            '78' => 'Yvelines',
+                            '79' => 'Deux-Sèvres',
+                            '80' => 'Somme',
+                            '81' => 'Tarn',
+                            '82' => 'Tarn-et-Garonne',
+                            '83' => 'Var',
+                            '84' => 'Vaucluse',
+                            '85' => 'Vendée',
+                            '86' => 'Vienne',
+                            '87' => 'Haute-Vienne',
+                            '88' => 'Vosges',
+                            '89' => 'Yonne',
+                            '90' => 'Territoire de Belfort',
+                            '91' => 'Essonne',
+                            '92' => 'Hauts-de-Seine',
+                            '93' => 'Seine-Saint-Denis',
+                            '94' => 'Val-de-Marne',
+                            '95' => 'Val-d\'oise',
+                            '976' => 'Mayotte',
+                            '971' => 'Guadeloupe',
+                            '973' => 'Guyane',
+                            '972' => 'Martinique',
+                            '974' => 'Réunion'
                         ];
                         
                         foreach($tab_dept as $code => $name_dept){ ?>
-                            <option <?php if(isset($_GET['code_dept']) 
-                            && $_GET['code_dept'] == $code){ echo 'selected'; } else {echo '';} ?> value="<?=$code ?>"><?=$code.'-'.$name_dept ?></option>
+                            <option <?php if(isset($_GET) 
+                            && in_array($code,$_GET)){ echo 'selected'; } else {echo '';} ?> value="<?='FR-'.$code ?>"><?=$code.'-'.$name_dept ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -226,3 +226,5 @@ $nb_annonces = $res['COUNT(id_annonce)'];
 </div> <!-- fin row -->
 
 <?php require_once('php_inc/footer.php'); ?>
+</body>
+</html>

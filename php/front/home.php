@@ -193,3 +193,11 @@ $dept = substr($_GET['dept'],-2,2);
     </div><!-- FIN DU ROW -->
 
 <?php require_once('../../php_inc/footer.php');?>
+<script>
+            // Page Home => filtre par intervalle sur le prix
+            $(function(){
+                $("#home_filtre_prix").slider({});
+            });
+        </script>     
+    </body>
+</html>

@@ -232,9 +232,9 @@ $nbConnexions = $res6['COUNT(id_connexion)'];
                     <div class="form-group">
                         <label for="civilite" class="col-sm-4 control-label">Civilité* :</label>
                         <div class="col-sm-7 pull-left">
-                            Monsieur <input type="radio" id="civilite" name="civilite" value="m" <?=((isset($_POST['civilite']) 
+                            Monsieur <input type="radio" name="civilite" value="m" <?=((isset($_POST['civilite']) 
                             && $_POST['civilite'] == 'm')) || !isset($_POST['civilite']) ? 'checked' : ''?>>
-                                Madame <input type="radio"  id="civilite" name="civilite" value="f" <?=((isset($_POST['civilite']) 
+                                Madame <input type="radio" name="civilite" value="f" <?=((isset($_POST['civilite']) 
                             && $_POST['civilite'] == 'f')) ? 'checked' : ''?>>
                         </div>
                     </div>

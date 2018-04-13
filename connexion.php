@@ -33,6 +33,23 @@ if(isset($_POST['action']) && $_POST['action'] =='connexion'){
             setcookie('user_connect',$_SESSION['membre']['id_membre'],time() + 3600 * 24 * 3); //3 jours
         }
 
+        //je contrôle si l'utilisateur a d'autres dépts en préférence de recherche
+        $sql = "SELECT * FROM user_depts WHERE id_membre=:id_membre";
+        $req = $pdo->prepare($sql);
+        $req->execute(array('id_membre' => $_SESSION['membre']['id_membre']));
+        $nb_dept = $req->rowCount();
+
+
+        $tab_dept = array();
+        if($nb_dept > 0){
+            while($res = $req->fetch(PDO::FETCH_ASSOC)){
+                $tab_dept[] = $res['code_dept'];
+            }
+        } else {
+            $tab_dept[] = $membre['cp'];
+        }
+        
+
         //j'historise la date de dernière connexion = celle en cours dans 'last_login'
         $dh_login = date('Y-m-d H:i:s');
         $sql = "UPDATE membre SET last_login=:last_login WHERE id_membre=:id_membre";
@@ -46,8 +63,8 @@ if(isset($_POST['action']) && $_POST['action'] =='connexion'){
             $session->setFlash("Vous êtes maintenant connecté sur notre site, et votre recherche est prégéolocalisée sur votre département (en jaune sur la carte de France)."); 
         }
         
-        //retour ajax
-        echo 'ok-'.$membre['cp'];
+        //retour ajax => 
+        echo json_encode($tab_dept);
     } else {
         echo 'KO';
     }
