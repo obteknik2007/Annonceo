@@ -15,10 +15,6 @@ $nb_annonces = $res['COUNT(id_annonce)'];
     echo '</pre>';*/
 
 //je parcoure $_GET pour récupérer les codes dept
-echo '<pre>';
-var_dump($_GET);
-var_dump($_SERVER['QUERY_STRING']);
-echo '</pre>';
 if(isset($_GET)){
     $url_get = $_SERVER['QUERY_STRING'];
     $liste_depts = implode(",",$_GET);
@@ -96,28 +92,9 @@ if(isset($_GET)){
             
             <div class="row">
                 <div class="col-md-4"> <!-- Liste des départements -->
-                <?php 
-                //Reconstitution de l'url
-                /*$nb_get = count($_GET);
-                echo '</pre>';
-                var_dump($_GET);
-                var_dump($nb_get);
-                echo '</pre>';
+                    <form method="POST" action="php/front/home.php">
                 
-                $list_url_get = '';
-                foreach($_GET as $key => $dept){
-                    $list_url_get .= $key.'='.$dept.'&';
-                }
-                echo '</pre>';
-                var_dump($_GET);
-                var_dump($nb_get);
-                var_dump($url_get);
-                var_dump($list_url_get); 
-                echo '</pre>';*/
-                ?>
-                <form method="POST" action="php/front/home.php">
-                
-                    <select id="map-selector" name="departements[]" multiple="multiple">
+                    <select id="map-selector" name="depts[]" multiple="multiple">
                        <?php $tab_dept = array();
                         $tab_dept = [
                             '01' => 'Ain',
@@ -165,7 +142,7 @@ if(isset($_GET)){
                             '42' => 'Loire',
                             '43' => 'Haute-Loire',
                             '44' => 'Loire-Atlantique',
-                            '44' => 'Loiret',
+                            '45' => 'Loiret',
                             '46' => 'Lot',
                             '47' => 'Lot-et-Garonne',
                             '48' => 'Lozère',

@@ -3,12 +3,13 @@ require_once('../../php_inc/init.php');
 require_once('../../php_inc/header.php');
 
 if(isset($_POST)){
-
-
-    foreach($_POST['departements'] as $valeur)
-    {
-    echo $valeur.' a été sélectionné<br>';
+    echo '<div class="alert alert-info">';
+    echo '<p>Départements pour filtre = </p>';
+    foreach($_POST['depts'] as $valeur){
+        
+        echo $valeur.'<br>';
     }
+    echo '</div>';
 }
     $sql_list_annonces = "
     SELECT 
