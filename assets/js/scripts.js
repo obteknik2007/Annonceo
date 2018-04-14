@@ -53,47 +53,9 @@ $(function(){
 
 //carte de france départements multi sélection
 //https://numa-bord.com/miniblog/jquery-selection-departements-francais-carte/
-//on masque le select classique
-   // $("#map-selector").css("display", "none");
-    //on ajoute un div #container-map-selector qui contiendra la carte
-    //$("#map-selector").parent().append("<div id='container-map-selector'></div>");
-    //on initie la carte sur cet élément
 
-    var liste;
-    var map = new jvm.Map({
-        container: $("#container-map-selector"),
-        map: 'fr_merc',
-        regionsSelectable: true,
-       //à chaque clic sur un département
-        onRegionSelected: function () {
-            //on vide le select
-            $("#map-selector").val("");
-
-            $("#list_dept_selected_code").html('<strong>' + map.getSelectedRegions()+ ',' + '</strong>');
-
-            //et on sélectionne chaque option correspondant au département sélectionné sur la carte
-            $.each(map.getSelectedRegions(), function (index, region) {
-                $("#map-selector option[value=" + region + "]").prop("selected", true); 
-            });
-
-            //on met à jour 
-            var ta_variable = '';
-
-              $("select[id='map-selector'] option:selected").each(function() {
-                    ta_variable=ta_variable + '|' + $(this).text();
-              });
-
-            $("#list_dept_selected").html('<strong>' + ta_variable + '</strong>');
-        } //FIN onRegionSelected
-    }); // FIN new jvm.Map
-
-    //au départ si des options du select sont présélectionnés, on les sélectionnes sur la carte
-    $("#map-selector option:selected").each(function () {
-        map.setSelectedRegions($(this).val());
-    });
+    
    
-
-
 /****************************************************/
 $('#retour_index_publier').on('click',function(e){
   e.preventDefault();
@@ -178,7 +140,6 @@ $('#inscription').on('click',function(e){
  var cp                 = $('#cp').val();
 
 //envoi AJAX
- 
  $.post('inscription_ajax.php','pseudo_inscription=' + pseudo_inscription + 
   '&mdp_inscription=' + mdp_inscription +
   '&civilite=' + civilite +
@@ -221,7 +182,9 @@ $('.cancel_form_add').on('click',function(e){
   $('#content_form_add').hide();
 });   
 
-/*** nettoyage de l'environnement ***/
+/****************************************************************************/
+/***  nettoyage de l'environnement ***/
+/****************************************************************************/
 $('#clean_environnement').on('click',function(){
   
   $.ajax({
@@ -242,20 +205,152 @@ $('#clean_environnement').on('click',function(){
   }); 
 }); 
 
+/****************************************************************************/
+/***  Index/Accès contenu Toute la France ***/
+/****************************************************************************/
+$('#index_btn_france').on('click',function(){
+  // btn class active
+  $('#index_btn_dept').removeClass('active');
+  $('#index_btn_region').removeClass('active');
+  $('#index_btn_france').addClass('active');
+
+  //appel ajax
+
+
+  $('#content_index').html('Contenu TOUTE LA FRANCE !!!');
+
+  /*$.ajax({
+    type : 'POST',
+    cache: false,
+    url : 'index_regions.php',  
+    success : function(data){ 
+      $('#content_index').html(data);
+
+
+    },
+    error: function(XMLHttpRequest,textStatus,errorThrown){
+        alert(textStatus);
+    }
+  }); */
+}); 
+/****************************************************************************/
+/***  Index/Accès content carte des régions ***/
+/****************************************************************************/
+$('#index_btn_region').on('click',function(){
+  // btn class 
+  $('#index_btn_france').removeClass('active');
+  $('#index_btn_dept').removeClass('active');
+  $('#index_btn_region').addClass('active');
+
+  //appel ajax
+  $.ajax({
+    type : 'POST',
+    cache: false,
+    url : 'index_regions.php',  
+    success : function(data){ 
+      $('#content_index').html(data);
+
+      var liste;
+    var map = new jvm.Map({
+        container: $("#container-map-selector"),
+        map: 'fr_merc',
+        regionsSelectable: true,
+       //à chaque clic sur un département
+        onRegionSelected: function () {
+            //on vide le select
+            $("#map-selector").val("");
+
+            $("#list_dept_selected_code").html('<strong>' + map.getSelectedRegions()+ ',' + '</strong>');
+
+            //et on sélectionne chaque option correspondant au département sélectionné sur la carte
+            $.each(map.getSelectedRegions(), function (index, region) {
+                $("#map-selector option[value=" + region + "]").prop("selected", true); 
+            });
+
+            //on met à jour 
+            var ta_variable = '';
+
+              $("select[id='map-selector'] option:selected").each(function() {
+                    ta_variable=ta_variable + '|' + $(this).text();
+              });
+
+            $("#list_dept_selected").html('<strong>' + ta_variable + '</strong>');
+        } //FIN onRegionSelected
+    }); // FIN new jvm.Map
+
+    //au départ si des options du select sont présélectionnés, on les sélectionnes sur la carte
+    $("#map-selector option:selected").each(function () {
+        map.setSelectedRegions($(this).val());
+    });
+    //fin content success
+
+    },
+    error: function(XMLHttpRequest,textStatus,errorThrown){
+        alert(textStatus);
+    }
+  }); 
+}); 
+/****************************************************************************/
+/***  Index/Accès content carte des départements ***/
+/****************************************************************************/
+$('#index_btn_dept').on('click',function(){
+  // btn class active
+  $('#index_btn_france').removeClass('active');
+  $('#index_btn_region').removeClass('active');
+  $('#index_btn_dept').addClass('active');
+
+  //appel ajax
+  $.ajax({
+    type : 'POST',
+    cache: false,
+    url : 'index_departements.php',  
+    success : function(data){ 
+      $('#content_index').html(data);
+
+    var liste;
+    var map = new jvm.Map({
+        container: $("#container-map-selector"),
+        map: 'fr_merc',
+        regionsSelectable: true,
+       //à chaque clic sur un département
+        onRegionSelected: function () {
+            //on vide le select
+            $("#map-selector").val("");
+
+            $("#list_dept_selected_code").html('<strong>' + map.getSelectedRegions()+ ',' + '</strong>');
+
+            //et on sélectionne chaque option correspondant au département sélectionné sur la carte
+            $.each(map.getSelectedRegions(), function (index, region) {
+                $("#map-selector option[value=" + region + "]").prop("selected", true); 
+            });
+
+            //on met à jour 
+            var ta_variable = '';
+
+              $("select[id='map-selector'] option:selected").each(function() {
+                    ta_variable=ta_variable + '|' + $(this).text();
+              });
+
+            $("#list_dept_selected").html('<strong>' + ta_variable + '</strong>');
+        } //FIN onRegionSelected
+    }); // FIN new jvm.Map
+
+    //au départ si des options du select sont présélectionnés, on les sélectionnes sur la carte
+    $("#map-selector option:selected").each(function () {
+        map.setSelectedRegions($(this).val());
+    });
+    //fin content success
+    },
+    error: function(XMLHttpRequest,textStatus,errorThrown){
+        alert(textStatus);
+    }
+  }); 
+}); 
+
+
+
+
+
 
 
 }); // FIN READY
-
-
-/*$(function()
-{
-$('.slider').on('input change', function(){
-          $(this).next($('.slider_label')).html(this.value);
-        });
-      $('.slider_label').each(function(){
-          var value = $(this).prev().attr('value');
-          $(this).html(value);
-        });  
-  
-  
-})*/

@@ -15,6 +15,11 @@ body{
 }
 #container-map-selector{height: 480px;}
 #map-selector{height: 530px}
+
+.index_btn_active{
+    background: #41d31c;
+    color: #000;
+}
 h1{
     font-size: 27px;
     text-align: center;
