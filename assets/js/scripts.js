@@ -81,8 +81,7 @@ $('#connexion').on('click',function(e){
             toastr.warning('Erreur sur les identifiants');
         }, 1300);
       } else { //OK CONNEXION
-        //var str = data;
-        //var res = str.split("-");
+      
         setTimeout(function () {
           toastr.options = {closeButton: true,progressBar: true,showMethod: 'fadeIn',timeOut: 2000};
           toastr.success('Vous êtes connecté.');
@@ -215,9 +214,7 @@ $('#index_btn_france').on('click',function(){
   $('#index_btn_france').addClass('active');
 
   //appel ajax
-
-
-  $('#content_index').html('Contenu TOUTE LA FRANCE !!!');
+  $('#content_index').html('Dernières parutions par catégorie !!!');
 
   /*$.ajax({
     type : 'POST',
@@ -250,32 +247,33 @@ $('#index_btn_region').on('click',function(){
     success : function(data){ 
       $('#content_index').html(data);
 
-      var liste;
-    var map = new jvm.Map({
-        container: $("#container-map-selector"),
-        map: 'fr_merc',
-        regionsSelectable: true,
-       //à chaque clic sur un département
-        onRegionSelected: function () {
-            //on vide le select
-            $("#map-selector").val("");
+        var liste;
+        var map = new jvm.Map({
+          container: $("#container-map-selector"),
+          map: 'fr_regions_2016_merc',
+          backgroundColor:  'cyan', 
+          regionsSelectable: true,
+        //à chaque clic sur un département
+          onRegionSelected: function () {
+              //on vide le select
+              $("#map-selector").val("");
 
-            $("#list_dept_selected_code").html('<strong>' + map.getSelectedRegions()+ ',' + '</strong>');
+              $("#list_dept_selected_code").html('<strong>' + map.getSelectedRegions()+ ',' + '</strong>');
 
-            //et on sélectionne chaque option correspondant au département sélectionné sur la carte
-            $.each(map.getSelectedRegions(), function (index, region) {
-                $("#map-selector option[value=" + region + "]").prop("selected", true); 
-            });
-
-            //on met à jour 
-            var ta_variable = '';
-
-              $("select[id='map-selector'] option:selected").each(function() {
-                    ta_variable=ta_variable + '|' + $(this).text();
+              //et on sélectionne chaque option correspondant au département sélectionné sur la carte
+              $.each(map.getSelectedRegions(), function (index, region) {
+                  $("#map-selector option[value=" + region + "]").prop("selected", true); 
               });
 
-            $("#list_dept_selected").html('<strong>' + ta_variable + '</strong>');
-        } //FIN onRegionSelected
+              //on met à jour 
+              var ta_variable = '';
+
+                $("select[id='map-selector'] option:selected").each(function() {
+                      ta_variable=ta_variable + '|' + $(this).text();
+                });
+
+              $("#list_dept_selected").html('<strong>' + ta_variable + '</strong>');
+          } //FIN onRegionSelected
     }); // FIN new jvm.Map
 
     //au départ si des options du select sont présélectionnés, on les sélectionnes sur la carte

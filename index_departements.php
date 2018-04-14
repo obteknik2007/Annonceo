@@ -140,7 +140,7 @@
                 <!-- CARTE DE FRANCE DES DEPARTEMENTS -->
                 <div class="col-md-8" id="carte"> 
                     <div class="form-group">
-                        <button style="color:yellow" type="submit" class="btn btn-primary btn-block" id="dept_search">Lancer la recherche</button>
+                        <button style="color:yellow" type="submit" class="btn btn-primary btn-block" id="dept_search">Lancer la recherche à partir de département(s)</button>
                     </div>
                     <div id='container-map-selector'></div>
                 </div>

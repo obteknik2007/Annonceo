@@ -76,13 +76,13 @@ if(isset($_GET)){
 
                 <ul class="nav nav-pills">
                     <!-- Btn Toute la France -->
-                    <li class="active" id="index_btn_france"><a href="#">Toute la France</a></li>
-
+                    <li class="active" id="index_btn_france"><a href="#">Home</a></li>
+                    <!--<li><button class="btn btn-primary">Recherche France</button></li>-->
                     <!-- Btn Régions -->
-                    <li><a href="#" id="index_btn_region">Régions</a></li>
+                    <li><a href="#" id="index_btn_region">Recherche par régions</a></li>
 
                     <!-- Btn  Départements -->
-                    <li><a href="#" id="index_btn_dept">Départements</a></li>
+                    <li><a href="#" id="index_btn_dept">Recherche par départements</a></li>
                 </ul>
             </div>
         </div>

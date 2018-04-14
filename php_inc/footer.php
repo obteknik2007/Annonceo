@@ -23,6 +23,9 @@
         <script src="<?=RACINE_SITE.'assets/js/toastr.min.js' ?>"></script>       
         <script src="<?=RACINE_SITE.'assets/js/jquery-jvectormap-2.0.3.min.js' ?>"></script>
         <script src="<?=RACINE_SITE.'assets/js/jquery-jvectormap-fr-merc_department.js' ?>"></script>
+        <script src="<?=RACINE_SITE.'assets/js/jquery-jvectormap-fr_regions_2016-merc.js' ?>"></script>
+
+        
 
         <script src="<?=RACINE_SITE.'assets/js/navigation.js' ?>"></script>        
         <script src="<?=RACINE_SITE.'assets/js/scripts.js' ?>"></script> 
